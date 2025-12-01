@@ -258,11 +258,10 @@ function SlideOferta({ detail, setDetail }) {
       number: "01",
       title: "Discovery",
       desc:
-        "Afloramos el proceso real (tácito), riesgos, stoppers y objetivo. Convertimos necesidad difusa en un alcance entendible.",
-      descShort:
-        "Proceso real, riesgos y objetivo. De necesidad difusa a alcance entendible.",
+        "Afloramos el proceso real (tácito), riesgos, stoppers y objetivo. Convertimos necesidad difusa en un alcance entendible y accionable.",
+      descShort: "Proceso real, riesgos y objetivo. De difuso a accionable.",
       roles: ["Tech Lead"],
-      tech: ["M365 (Teams/SharePoint)", "Workshops", "Mapa de proceso"],
+      stack: [], // <- vacío a propósito
     },
     {
       tone: "seq-blue",
@@ -270,10 +269,9 @@ function SlideOferta({ detail, setDetail }) {
       title: "Definición",
       desc:
         "Diseño funcional y técnico: modelo de datos, permisos (RLS), pantallas por rol, integraciones y patrón de solución.",
-      descShort:
-        "Arquitectura: datos, permisos, UX por rol e integraciones.",
+      descShort: "Arquitectura: datos, permisos, UX por rol e integraciones.",
       roles: ["Tech Lead", "Developer"],
-      tech: ["Dataverse", "Seguridad/RLS", "Integración M365", "Azure (APIs)"],
+      stack: [], // <- vacío a propósito
     },
     {
       tone: "seq-purple",
@@ -281,10 +279,14 @@ function SlideOferta({ detail, setDetail }) {
       title: "Construcción",
       desc:
         "Construcción iterativa por sprints: apps, automatizaciones, integraciones pro-code, agentes IA y validación de calidad.",
-      descShort:
-        "Sprints: apps, automatización, integraciones, agentes IA y calidad.",
+      descShort: "Sprints: apps, automatización, integraciones, agentes IA y calidad.",
       roles: ["Developer", "QA"],
-      tech: ["Power Apps", "Power Automate", "Azure Functions", "Azure OpenAI/Foundry", "Dataverse"],
+      stack: [
+        "Power Platform (Power Apps, Power Pages, Power Automate, Dataverse, AI HUB, Copilot Studio)",
+        "Azure (Azure Functions, Azure Automation, Azure AI Foundry)",
+        "Microsoft 365 (Teams, SharePoint, Outlook)",
+        "Fabric",
+      ],
     },
     {
       tone: "seq-teal",
@@ -292,10 +294,9 @@ function SlideOferta({ detail, setDetail }) {
       title: "Adopción",
       desc:
         "Activamos uso real: formación por rol, materiales, acompañamiento y ajuste fino para que la solución se quede.",
-      descShort:
-        "Formación por rol + acompañamiento para asegurar uso real.",
+      descShort: "Formación por rol + acompañamiento para asegurar uso real.",
       roles: ["Adopción", "Tech Lead"],
-      tech: ["Teams", "SharePoint", "Stream"],
+      stack: [], // <- vacío a propósito
     },
     {
       tone: "seq-blue",
@@ -303,10 +304,9 @@ function SlideOferta({ detail, setDetail }) {
       title: "Evolución",
       desc:
         "Transformación continua: telemetría, soporte, mejoras y roadmap vivo priorizado por valor (menos burocracia, más impacto).",
-      descShort:
-        "Telemetría + soporte + roadmap vivo priorizado por valor.",
+      descShort: "Telemetría + soporte + roadmap vivo priorizado por valor.",
       roles: ["Soporte", "Tech Lead", "Developer"],
-      tech: ["Fabric", "App Insights", "Backlog"],
+      stack: [], // <- vacío a propósito
     },
   ];
 
@@ -370,6 +370,11 @@ function SlideOferta({ detail, setDetail }) {
 function SeqDiagram({ steps, detail }) {
   return (
     <div className="seqWrapper">
+      <div className="seqTopLabels" aria-hidden="true">
+        <span className="seqTopLabel">Roles</span>
+        <span className="seqTopLabel">Stack (solo en Construcción)</span>
+      </div>
+
       <div className="seqContainer">
         {steps.map((s, i) => (
           <div className="seqCol" key={s.number}>
@@ -381,10 +386,9 @@ function SeqDiagram({ steps, detail }) {
 
             <div className="seqLine" />
 
-            <div className="seqBlock roleBlock">
-              <div className="seqLabel">Roles</div>
+            <div className="seqBlock roleBlock" aria-label="Roles">
               <div className="seqTags">
-                {(detail ? s.roles : s.roles.slice(0, 2)).map((r) => (
+                {s.roles.map((r) => (
                   <span className="seqTag role" key={r}>
                     {r}
                   </span>
@@ -394,15 +398,18 @@ function SeqDiagram({ steps, detail }) {
 
             <div className="seqLine" />
 
-            <div className="seqBlock techBlock">
-              <div className="seqLabel">Stack</div>
-              <div className="seqTags">
-                {(detail ? s.tech : s.tech.slice(0, 3)).map((t) => (
-                  <span className="seqTag tech" key={t}>
-                    {t}
-                  </span>
-                ))}
-              </div>
+            <div className="seqBlock techBlock" aria-label="Stack tecnológico">
+              {s.stack?.length ? (
+                <div className="seqTags">
+                  {(detail ? s.stack : s.stack.slice(0, 2)).map((t) => (
+                    <span className="seqTag tech" key={t}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <div className="seqEmpty">—</div>
+              )}
             </div>
 
             {i < steps.length - 1 ? <div className="seqArrow">→</div> : null}
@@ -413,56 +420,62 @@ function SeqDiagram({ steps, detail }) {
   );
 }
 
+
 function RolesLegend({ detail }) {
   const roles = [
     {
       tone: "teal",
       name: "Tech Lead",
-      sub: "Consultoría · Arquitectura · Backlog",
+      def:
+        "Interlocutor principal. Convierte necesidad de negocio en arquitectura (datos, permisos, UX) y backlog gobernado.",
       bullets: [
-        "Traduce negocio → solución",
-        "Define datos/seguridad/UX",
-        "Orquesta decisiones y alcance",
+        "Discovery con stakeholders y proceso real",
+        "Diseño funcional + modelo de datos + RLS",
+        "Priorización con CIO, decisiones y control de alcance",
       ],
     },
     {
       tone: "blue",
       name: "Developer",
-      sub: "Power Platform · Azure · IA aplicada",
+      def:
+        "Constructor del sistema. Implementa apps, automatización e integraciones; y aplica IA para agentes, copilots y RAG.",
       bullets: [
-        "Apps + automatización + integraciones",
-        "Agentes IA (OpenAI/Foundry) + RAG",
-        "Calidad técnica y performance",
+        "Power Apps / Automate / Dataverse (lógica y rendimiento)",
+        "Azure Functions / Automation / APIM (pro-code e integración)",
+        "IA: Azure OpenAI/Foundry, agentes, RAG y Copilot Studio",
       ],
     },
     {
       tone: "purple",
       name: "QA",
-      sub: "Pruebas · Regresión · Robustez",
+      def:
+        "Garantiza robustez. Asegura que funciona siempre (no solo una vez) con pruebas por rol y regresión.",
       bullets: [
-        "Casos de prueba multirol",
-        "Regresión por sprint",
-        "Validación antes de despliegue",
+        "Casos de prueba por proceso y por rol",
+        "Regresión sprint a sprint",
+        "Validación previa a despliegue (UAT) y estabilización",
       ],
     },
     {
       tone: "teal",
       name: "Adopción",
-      sub: "Formación · Cambio · Uso real",
+      def:
+        "Convierte entrega en uso real. Gestión del cambio, formación por rol y acompañamiento en el arranque.",
       bullets: [
-        "Formación por rol",
-        "Materiales y soporte inicial",
-        "Feedback operativo",
+        "Formación por rol y materiales (guías, vídeos, FAQ)",
+        "Acompañamiento inicial y resolución de fricciones",
+        "Feedback operativo para evolución del backlog",
       ],
     },
     {
       tone: "blue",
       name: "Soporte",
-      sub: "Telemetría · Incidencias · Evolución",
+      def:
+        "Motor de continuidad. Telemetría, incidencias y mejora continua para sostener el valor en el tiempo.",
       bullets: [
-        "Monitorización y KPIs",
-        "Corrección rápida",
-        "Roadmap continuo",
+        "Monitorización, KPIs y telemetría de uso",
+        "Corrección rápida + mantenimiento evolutivo",
+        "Roadmap continuo coordinado con Tech Lead",
       ],
     },
   ];
@@ -470,36 +483,28 @@ function RolesLegend({ detail }) {
   return (
     <div className="rolesLegendRow">
       {roles.map((r) => (
-        <RoleLegendCard
-          key={r.name}
-          tone={r.tone}
-          name={r.name}
-          sub={r.sub}
-          bullets={r.bullets}
-          detail={detail}
-        />
+        <RoleLegendCard key={r.name} {...r} detail={detail} />
       ))}
     </div>
   );
 }
 
-function RoleLegendCard({ tone, name, sub, bullets, detail }) {
+function RoleLegendCard({ tone, name, def, bullets, detail }) {
   return (
     <div className={"roleLegendCard tone-" + tone}>
       <div className="roleLegendName">{name}</div>
-      <div className="roleLegendSub">{sub}</div>
+      <div className="roleLegendDef">{def}</div>
       {detail ? (
         <ul className="roleLegendList">
-          {bullets.slice(0, 3).map((b) => (
+          {bullets.map((b) => (
             <li key={b}>{b}</li>
           ))}
         </ul>
-      ) : (
-        <div className="roleLegendOne">{bullets[0]}</div>
-      )}
+      ) : null}
     </div>
   );
 }
+
 
 function TechLegend({ detail }) {
   const cards = [
