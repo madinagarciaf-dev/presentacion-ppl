@@ -669,3 +669,94 @@ body{
 .roleTop{
   background: linear-gradient(135deg, rgba(0,79,159,0.86), rgba(0,167,157,0.66));
 }
+/* ====== Apple/Microsoft readability pass ====== */
+.slideTitle { letter-spacing: -0.02em; }
+.slideSubtitle { max-width: 70ch; }
+
+.section { margin-bottom: 18px; }
+.sectionTitle { letter-spacing: -0.015em; }
+
+.calloutTitle { font-weight: 750; }
+.calloutText strong { font-weight: 650; }
+
+.pillarRow{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+.pillarCard{
+  border: 1px solid rgba(20,30,45,0.08);
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 10px 30px rgba(15,35,52,0.06);
+  position: relative;
+  overflow:hidden;
+}
+.pillarAccent{
+  position:absolute; inset:0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(0,167,157,1), rgba(0,79,159,1));
+}
+.pillarHead{
+  display:flex; gap:10px; align-items:center;
+  margin-top: 4px;
+}
+.pillarIcon{
+  width: 34px; height: 34px;
+  border-radius: 12px;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(0,167,157,0.10);
+  color: rgba(0,167,157,1);
+}
+.pillarTitle{
+  font-size: 15px;
+  font-weight: 850;
+  color: rgba(20,30,45,0.92);
+}
+.pillarKicker{
+  margin-top: 6px;
+  font-size: 13px;
+  color: rgba(20,30,45,0.70);
+  line-height: 1.35;
+}
+.pillarList{
+  margin: 10px 0 0;
+  padding-left: 16px;
+  color: rgba(20,30,45,0.82);
+  font-size: 13px;
+  line-height: 1.42;
+}
+.pillarList li{ margin: 4px 0; }
+
+.hrSoft{
+  height: 1px;
+  background: rgba(20,30,45,0.08);
+  margin: 14px 0;
+  border: 0;
+}
+
+.roleCard{ box-shadow: 0 10px 30px rgba(15,35,52,0.06); }
+.roleTopTitle, .roleBottomTitle{ font-weight: 800; }
+.roleList{ font-size: 13px; }
+.roleTag, .roleTagAlt{ font-weight: 750; }
+
+.roleTop{ background: linear-gradient(135deg, rgba(0,79,159,0.90), rgba(0,167,157,0.55)); }
+.roleBottom{ background: rgba(0,79,159,0.06); }
+
+.processLane{ gap: 10px; }
+.processStep{
+  border: 1px solid rgba(20,30,45,0.08);
+  background: rgba(255,255,255,0.88);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(15,35,52,0.05);
+}
+.processTitle{ font-weight: 850; }
+.processText{ color: rgba(20,30,45,0.70); }
+
+/* Responsive: si la pantalla es estrecha, 1 columna */
+@media (max-width: 1100px){
+  .pillarRow{ grid-template-columns: 1fr; }
+}
+

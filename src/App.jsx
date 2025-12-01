@@ -156,8 +156,8 @@ function PillList({ items }) {
 }
 
 function RoleCard({ role, competencyTitle, competencies, taskTitle, tasks, detail }) {
-  const comp = cut(competencies, 3, detail);
-  const tsk = cut(tasks, 3, detail);
+  const comp = cut(competencies, 2, detail);
+  const tsk = cut(tasks, 2, detail);
 
   return (
     <div className="roleCard">
@@ -252,46 +252,81 @@ function BrandIcon() {
 /* --------------------------- SLIDE 1 --------------------------- */
 
 function SlideOferta({ detail, setDetail }) {
-  const steps = [
+  // ✅ 3 pilares (no repiten el ProcessLane)
+  const pillars = [
     {
       title: "Propósito",
-      textShort: "Transformación continua: portfolio vivo de soluciones, no proyectos sueltos.",
-      text:
-        "Convertimos necesidades de negocio en soluciones digitales vivas, escalables y gobernadas. " +
-        "No vendemos “apps sueltas”: construimos un portfolio que evoluciona con el negocio.",
-      tags: ["Impacto", "Transversalidad", "Continuidad"],
+      kicker: "Transformación continua: portfolio vivo de valor.",
+      bullets: [
+        "Backlog vivo, priorizado por impacto con CIO.",
+        "Cadencia de entregas + evolución constante.",
+        "Transparencia: avance, stoppers y decisiones.",
+      ],
+      icon: <SvgTarget />,
     },
     {
-      title: "Personas clave",
-      textShort: "Stakeholders + empatía + definición clara del proceso real (conocimiento tácito).",
-      text:
-        "Nos apoyamos en stakeholders que conocen el proceso real (tácito) y lo llevamos a definición clara. " +
-        "Aportamos empatía, estructuración y visión end-to-end.",
-      tags: ["Descubrimiento", "Requisitos", "Optimización"],
+      title: "Personas",
+      kicker: "Convertimos conocimiento tácito en proceso gobernado.",
+      bullets: [
+        "Discovery con stakeholders y empatía con el proceso real.",
+        "Definición funcional clara + optimización cuando aplica.",
+        "Comunicación adaptada al decisor (síntesis o detalle).",
+      ],
+      icon: <SvgUsers />,
     },
     {
-      title: "Backlog & priorización",
-      textShort: "Backlog vivo, priorización con CIO y seguimiento transparente (adaptado al decisor).",
+      title: "Plataforma",
+      kicker: "Microsoft aplicado con ALM, gobierno, datos e IA.",
+      bullets: [
+        "Modelo de datos + seguridad (roles / permisos / RLS).",
+        "Apps multicanal con UX guiada + agentes end-to-end.",
+        "Integración bidireccional (conectores y APIs).",
+      ],
+      icon: <SvgPlatform />,
+    },
+  ];
+
+  // ✅ ProcessLane = fases (no repite Propósito/Personas/Plataforma)
+  const phases = [
+    {
+      title: "Discovery",
+      textShort: "Entender el proceso real y el impacto (stakeholders, contexto, dolor).",
       text:
-        "Gestionamos un backlog vivo: priorización por valor/urgencia con CIO y responsables. " +
-        "Transparencia de avance, stoppers y decisiones (informamos como el decisor necesita: síntesis o detalle).",
-      tags: ["Backlog", "Priorización CIO", "Transparencia"],
+        "Levantamos el proceso end-to-end con usuarios clave, identificamos fricciones, riesgos y oportunidades. " +
+        "Aterrizamos objetivos medibles y criterios de valor.",
+      tags: ["Stakeholders", "Proceso real", "Impacto"],
     },
     {
-      title: "Plataforma & diseño",
-      textShort: "Datos, roles, pantallas, agentes, integraciones e IA + estimación de costes.",
+      title: "Definición",
+      textShort: "Requisitos + optimización del flujo + criterio de éxito.",
       text:
-        "Traemos la tecnología a la definición: datos, roles, pantallas, agentes, integraciones e IA; " +
-        "estimamos costes y elegimos el patrón correcto (core, módulo conectado o satélite).",
-      tags: ["Arquitectura", "Viabilidad", "Coste"],
+        "Convertimos necesidad en definición funcional clara; optimizamos el proceso si aplica y definimos " +
+        "qué es éxito (KPIs / tiempos / trazabilidad).",
+      tags: ["Requisitos", "Optimización", "KPIs"],
     },
     {
-      title: "Entrega & evolución",
-      textShort: "Sprints, ALM, despliegues seguros, adopción y mejora continua del portfolio.",
+      title: "Backlog & Prioridad",
+      textShort: "Backlog vivo, priorización con CIO y seguimiento compartido.",
       text:
-        "Desarrollamos iterativamente, desplegamos con ALM y gobernanza, acompañamos la adopción y mejoramos en ciclos. " +
-        "Lo importante es mantener el ritmo de valor y la mejora constante.",
-      tags: ["Agile", "ALM", "Adopción"],
+        "Gestionamos un backlog vivo, priorizado por valor/urgencia con CIO y responsables. " +
+        "Seguimiento transparente de avance, stoppers y decisiones.",
+      tags: ["Backlog", "CIO", "Transparencia"],
+    },
+    {
+      title: "Construcción",
+      textShort: "Sprints + calidad + integración + despliegues controlados.",
+      text:
+        "Construcción iterativa, pruebas, hardening y despliegues con ALM. Integraciones y automatizaciones " +
+        "end-to-end (y Azure para lógica compleja cuando conviene).",
+      tags: ["Agile", "ALM", "Integración"],
+    },
+    {
+      title: "Adopción & Evolución",
+      textShort: "Formación por rol + soporte inicial + mejora continua del portfolio.",
+      text:
+        "Adopción por rol, soporte inicial y medición. El portfolio evoluciona (nuevas necesidades, ajustes, " +
+        "automatización e IA).",
+      tags: ["Adopción", "Uso real", "Evolución"],
     },
   ];
 
@@ -299,7 +334,7 @@ function SlideOferta({ detail, setDetail }) {
     <SlideShell
       badge="Lo que ofrecemos"
       title="Propósito · Personas · Plataforma (un modelo integrado)"
-      subtitle="Identificamos, definimos, priorizamos, construimos y evolucionamos soluciones digitales con ritmo continuo."
+      subtitle="Transformación continua: descubrimos, priorizamos y construimos un portfolio vivo de soluciones."
       rightNote="Pulsa D para Detalle"
       detail={detail}
       setDetail={setDetail}
@@ -307,8 +342,8 @@ function SlideOferta({ detail, setDetail }) {
       <div className="grid2">
         <div className="col">
           <Section
-            eyebrow="PROPÓSITO"
-            title="De retos de negocio a soluciones en producción (y en evolución)"
+            eyebrow="EN 10 SEGUNDOS"
+            title="La transformación no es una entrega. Es un sistema operativo."
             right={
               <div className="metricsRow">
                 <Metric label="Enfoque" value="Impacto" hint="valor > entregables" tone="blue" />
@@ -317,13 +352,11 @@ function SlideOferta({ detail, setDetail }) {
               </div>
             }
           >
+            {/* ✅ Menos negrita: solo una frase clave */}
             <div className="callout">
-              <div className="calloutTitle">
-                La transformación no es una entrega. Es un sistema operativo.
-              </div>
               <div className="calloutText">
-                Unimos <strong>negocio</strong>, <strong>arquitectura</strong>, <strong>desarrollo</strong> y{" "}
-                <strong>adopción</strong> bajo un backlog vivo y un gobierno claro.
+                Unimos negocio, arquitectura, desarrollo y adopción bajo un backlog vivo, con gobierno y
+                transparencia.
               </div>
               <div className="calloutChips">
                 <Chip tone="strong">Backlog vivo</Chip>
@@ -332,7 +365,27 @@ function SlideOferta({ detail, setDetail }) {
               </div>
             </div>
 
-            <ProcessLane steps={steps} detail={detail} />
+            {/* ✅ 3 pilares separados (claridad visual) */}
+            <div className="pillarRow">
+              {pillars.map((p) => (
+                <PillarCard
+                  key={p.title}
+                  icon={p.icon}
+                  title={p.title}
+                  kicker={p.kicker}
+                  bullets={p.bullets}
+                  detail={detail}
+                />
+              ))}
+            </div>
+
+            <hr className="hrSoft" />
+
+            {/* ✅ Proceso en fases (sin repetir pilares) */}
+            <div className="sectionTitle" style={{ marginBottom: 10 }}>
+              Cómo trabajamos (de discovery a evolución)
+            </div>
+            <ProcessLane steps={phases} detail={detail} />
           </Section>
 
           <Section eyebrow="PLATAFORMA (CAPACIDADES)" title="Qué habilita Microsoft (y cómo lo aplicamos)">
@@ -406,14 +459,14 @@ function SlideOferta({ detail, setDetail }) {
             <div className="rolesGrid">
               <RoleCard
                 role="Negocio · Discovery & Prioridad"
-                competencyTitle="Entender, estructurar y priorizar"
+                competencyTitle="Competencias"
                 competencies={[
                   "Empatía con usuarios y visión transversal",
                   "Traducir necesidad → requisito",
                   "Detección de riesgos e ineficiencias",
                   "Comunicación adaptada al decisor",
                 ]}
-                taskTitle="Qué hace dentro del proceso"
+                taskTitle="Qué aporta al proceso"
                 tasks={[
                   "Entrevistas con stakeholders clave",
                   "Mapeo y optimización del proceso",
@@ -424,14 +477,14 @@ function SlideOferta({ detail, setDetail }) {
               />
               <RoleCard
                 role="Arquitectura · Diseño & Viabilidad"
-                competencyTitle="Diseñar soluciones que escalan"
+                competencyTitle="Competencias"
                 competencies={[
                   "Arquitectura de datos sin redundancias",
                   "Diseño funcional y técnico consistente",
                   "Integración con sistemas existentes y nuevos",
                   "Evaluación de coste, riesgo y viabilidad",
                 ]}
-                taskTitle="Qué hace dentro del proceso"
+                taskTitle="Qué aporta al proceso"
                 tasks={[
                   "Decide patrón: core / módulo / satélite",
                   "Modelo de datos + roles/permisos",
@@ -442,14 +495,14 @@ function SlideOferta({ detail, setDetail }) {
               />
               <RoleCard
                 role="Desarrollo · Construcción"
-                competencyTitle="Construir bien, rápido y mantenible"
+                competencyTitle="Competencias"
                 competencies={[
                   "Buenas prácticas PP + técnica (eficiencia/código)",
                   "Gestión de stoppers e incidencias",
                   "Modularidad e integración API",
                   "IA aplicada y automatización avanzada",
                 ]}
-                taskTitle="Qué hace dentro del proceso"
+                taskTitle="Qué aporta al proceso"
                 tasks={[
                   "Desarrolla apps (UX, lógica, validaciones)",
                   "Flujos/agentes (aprobaciones, cálculos, docs)",
@@ -460,14 +513,14 @@ function SlideOferta({ detail, setDetail }) {
               />
               <RoleCard
                 role="Adopción & Gobierno · Continuidad"
-                competencyTitle="Garantizar uso real y control"
+                competencyTitle="Competencias"
                 competencies={[
                   "Formación por rol + gestión del cambio",
                   "Gobernanza (DLP/entornos/seguridad)",
                   "Observabilidad del uso y mejora continua",
                   "Estandarización y sostenibilidad",
                 ]}
-                taskTitle="Qué hace dentro del proceso"
+                taskTitle="Qué aporta al proceso"
                 tasks={[
                   "Plan de adopción + mensajes clave",
                   "Acompañamiento inicial + soporte dudas",
@@ -478,10 +531,9 @@ function SlideOferta({ detail, setDetail }) {
               />
             </div>
 
+            {/* ✅ Menos negrita */}
             <div className="miniNote">
-              <strong>Clave:</strong> el mensaje se entiende en segundos:{" "}
-              <strong>propósito</strong> + <strong>roles</strong> +{" "}
-              <strong>plataforma</strong>, con backlog vivo y ritmo continuo.
+              Clave: propósito + roles + plataforma, con backlog vivo y ritmo continuo.
             </div>
           </Section>
         </div>
@@ -489,6 +541,7 @@ function SlideOferta({ detail, setDetail }) {
     </SlideShell>
   );
 }
+
 
 /* --------------------------- SLIDE 2 --------------------------- */
 
@@ -719,6 +772,57 @@ function SvgShield() {
     <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path
         d="M12 2 20 6v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Zm0 4.2L6 8.9V12c0 3.7 2.3 6.9 6 7.8 3.7-.9 6-4.1 6-7.8V8.9l-6-2.7Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function PillarCard({ icon, title, kicker, bullets, detail }) {
+  return (
+    <div className="pillarCard">
+      <div className="pillarAccent" />
+      <div className="pillarHead">
+        <div className="pillarIcon">{icon}</div>
+        <div>
+          <div className="pillarTitle">{title}</div>
+          <div className="pillarKicker">{kicker}</div>
+        </div>
+      </div>
+      <ul className="pillarList">
+        {cut(bullets, 2, detail).map((b) => (
+          <li key={b}>{b}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function SvgTarget() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Zm0-13a5 5 0 1 0 5 5 5 5 0 0 0-5-5Zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+function SvgUsers() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4ZM8 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.31 0-6 1.79-6 4v1h12v-1c0-2.21-2.69-4-6-4Zm8 0c-.62 0-1.21.06-1.77.17A5.3 5.3 0 0 1 18 18v1h4v-1c0-2.21-2.69-4-6-4Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+function SvgPlatform() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M3 4h8v8H3V4Zm10 0h8v5h-8V4ZM3 14h8v6H3v-6Zm10-3h8v9h-8v-9Z"
         fill="currentColor"
       />
     </svg>
