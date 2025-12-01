@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "src": "/login",
+      "dest": "/login.html"
+    },
+    {
+      "src": "/(.*)",
+      "middlewarePath": "middleware.js"
+    }
+  ]
+}

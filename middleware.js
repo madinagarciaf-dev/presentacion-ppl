@@ -1,16 +1,16 @@
-export function middleware(req) {
-  const url = new URL(req.url);
+export function middleware(request) {
+  const url = new URL(request.url);
 
-  // Si ya está autenticado
-  if (req.cookies.get("ppl_auth") === "1") {
+  // ya autenticado → permitir
+  if (request.cookies.get("ppl_auth") === "1") {
     return;
   }
 
-  // Permitir ver la página login
+  // permitir el acceso a /login
   if (url.pathname === "/login" || url.pathname.startsWith("/login")) {
     return;
   }
 
-  // Redirigir al login
+  // redirigir al login
   return Response.redirect(`${url.origin}/login`);
 }
