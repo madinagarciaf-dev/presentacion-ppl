@@ -910,4 +910,167 @@ body{
   .offerPillars{ grid-template-columns: 1fr; }
   .offerBottom{ grid-template-columns: 1fr; }
 }
+/* ===== OPS DIAGRAM (Slide 1) ===== */
+.opsCard{
+  display:grid;
+  grid-template-columns: 260px 1fr;
+  gap: 14px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.ringWrap{
+  width: 250px;
+  height: 250px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.ringCircle{
+  position:absolute;
+  inset: 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: radial-gradient(circle at 30% 30%, rgba(0,167,157,.14), rgba(255,255,255,.9));
+  box-shadow: var(--shadow);
+}
+
+.ringCenter{
+  position:absolute;
+  inset: 82px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.92);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 12px;
+}
+
+.ringCenterTitle{ font-weight: 950; color: var(--ink); letter-spacing:-.02em; font-size: 12px; }
+.ringCenterSub{ margin-top: 4px; font-size: 11px; color: rgba(20,30,45,.6); font-weight: 700; }
+
+.stageNode{
+  position:absolute;
+  transform: translate(-50%,-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 6px;
+  cursor:pointer;
+  user-select:none;
+}
+
+.stageDot{
+  width: 34px; height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.95);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 950;
+  color: rgba(0,79,159,.95);
+  box-shadow: 0 10px 24px rgba(15,35,52,.08);
+}
+
+.stageDotActive{
+  background: linear-gradient(135deg, rgba(0,79,159,.95), rgba(0,167,157,.75));
+  color: white;
+  border-color: rgba(255,255,255,.25);
+  box-shadow: 0 16px 34px rgba(0,79,159,.20);
+}
+
+.stageLabel{
+  font-size: 11px;
+  font-weight: 900;
+  color: rgba(20,30,45,.72);
+  text-align:center;
+  max-width: 92px;
+  line-height:1.1;
+}
+
+.stagePanel{
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: rgba(255,255,255,.92);
+  box-shadow: var(--shadow);
+  padding: 12px;
+}
+
+.stagePanelEyebrow{
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing:.06em;
+  text-transform: uppercase;
+  color: rgba(0,79,159,.95);
+}
+
+.stagePanelTitle{
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing:-.03em;
+  color: var(--ink);
+}
+
+.stagePanelText{
+  margin-top: 6px;
+  font-size: 13px;
+  color: rgba(20,30,45,.70);
+  line-height: 1.35;
+}
+
+.stageRow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top: 10px;
+}
+
+.miniTag{
+  font-size: 12px;
+  font-weight: 900;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,167,157,.22);
+  background: rgba(0,167,157,.07);
+  color: rgba(0,79,159,.95);
+}
+
+.platformRail{
+  margin-top: 12px;
+  display:flex;
+  gap: 8px;
+  flex-wrap:wrap;
+}
+
+.platformChip{
+  font-size: 12px;
+  font-weight: 900;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.92);
+  color: rgba(20,30,45,.72);
+}
+
+.platformChipActive{
+  border-color: rgba(0,167,157,.35);
+  background: rgba(0,167,157,.10);
+  color: rgba(0,79,159,.95);
+}
+
+.roleMiniActive{
+  outline: 2px solid rgba(0,167,157,.25);
+  box-shadow: 0 18px 40px rgba(0,167,157,.10);
+}
+
+/* Compacta un pelín para que no haga scroll tanto */
+.offerWrap{ gap: 14px; padding: 16px 18px 14px; }
+.offerHeadline{ font-size: 30px; }
+.offerHero{ padding: 14px; }
+.pillarBig{ min-height: 130px; padding: 12px 12px 10px; }
+.pillarList{ font-size: 12.5px; line-height: 1.4; }
 

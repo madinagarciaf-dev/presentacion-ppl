@@ -300,28 +300,105 @@ function SlideOferta({ detail, setDetail }) {
     {
       name: "Negocio · Discovery & Prioridad",
       badge: "1–3",
+      phases: [1,2,3],
       do: ["Entrevistas clave", "Backlog y criterios de valor"],
       know: ["Empatía + visión transversal", "Necesidad → requisito"],
     },
     {
       name: "Arquitectura · Diseño & Viabilidad",
       badge: "2–3",
+      phases: [2,3],
       do: ["Patrón: core/módulo/satélite", "Modelo datos + roles/permisos"],
       know: ["Escalabilidad sin redundancias", "Coste, riesgo y viabilidad"],
     },
     {
       name: "Desarrollo · Construcción",
       badge: "4",
+      phases: [4],
       do: ["Apps + lógica + validaciones", "Agentes, integraciones y hardening"],
       know: ["Buenas prácticas PP + técnica", "Gestión de stoppers"],
     },
     {
       name: "Adopción & Gobierno · Continuidad",
       badge: "5",
+      phases: [5],
       do: ["Plan adopción + soporte inicial", "Gobierno (DLP/ALM) + KPIs uso"],
       know: ["Gestión del cambio", "Sostenibilidad del portfolio"],
     },
   ];
+
+    const [activeStage, setActiveStage] = useState(0);
+
+  const platformCaps = [
+    { key: "data", label: "Datos & Seguridad" },
+    { key: "ux", label: "Apps & UX" },
+    { key: "flow", label: "Agentes (Automate)" },
+    { key: "int", label: "Integración & APIs" },
+    { key: "ai", label: "IA aplicada" },
+    { key: "alm", label: "ALM & Gobierno" },
+  ];
+
+  const stages = [
+    {
+      n: 1,
+      name: "Discovery",
+      hint: "proceso real",
+      text: "Entendemos el proceso end-to-end con stakeholders y detectamos oportunidades de digitalización.",
+      roleLead: "Negocio · Discovery & Prioridad",
+      caps: ["data", "ux"],
+      tags: ["Stakeholders", "Dolor", "Visión E2E"],
+    },
+    {
+      n: 2,
+      name: "Definición",
+      hint: "requisitos",
+      text: "Definimos requisitos + optimización del flujo, criterios de éxito y riesgos. Aquí nace el diseño.",
+      roleLead: "Arquitectura · Diseño & Viabilidad",
+      caps: ["data", "ux", "int"],
+      tags: ["Modelo datos", "Roles", "Diseño UX"],
+    },
+    {
+      n: 3,
+      name: "Prioridad",
+      hint: "backlog vivo",
+      text: "Gestionamos backlog vivo y priorizamos con CIO: valor/urgencia, dependencias y roadmap. Seguimiento compartido.",
+      roleLead: "Negocio · Discovery & Prioridad",
+      caps: ["alm", "data"],
+      tags: ["Priorización CIO", "Seguimiento", "Transparencia"],
+    },
+    {
+      n: 4,
+      name: "Construcción",
+      hint: "sprints + ALM",
+      text: "Construimos por sprints con calidad: apps, agentes, integraciones, hardening y despliegues seguros.",
+      roleLead: "Desarrollo · Construcción",
+      caps: ["ux", "flow", "int", "ai"],
+      tags: ["Entrega", "Calidad", "Integración"],
+    },
+    {
+      n: 5,
+      name: "Evolución",
+      hint: "adopción + gobierno",
+      text: "Aseguramos uso real: adopción por rol, gobernanza (DLP/ALM), KPIs y nuevas iteraciones del portfolio.",
+      roleLead: "Adopción & Gobierno · Continuidad",
+      caps: ["alm", "ai", "data"],
+      tags: ["Adopción", "Gobernanza", "Citizen Devs"],
+    },
+  ];
+
+  const active = stages[activeStage];
+  const capActive = new Set(active.caps);
+
+  const nodePos = (i) => {
+    // 5 puntos en círculo (empieza arriba)
+    const deg = -90 + i * 72;
+    const rad = (deg * Math.PI) / 180;
+    const r = 42; // radio en %
+    return {
+      top: `${50 + Math.sin(rad) * r}%`,
+      left: `${50 + Math.cos(rad) * r}%`,
+    };
+  };
 
   return (
     <SlideShell
@@ -397,31 +474,52 @@ function SlideOferta({ detail, setDetail }) {
         <div className="offerBottom">
           <div className="block">
             <div className="blockTitle">Cómo operamos</div>
-            <div className="blockSub">De discovery a evolución, con backlog vivo y ritmo continuo.</div>
-            <div className="stepRow">
-              {steps.map((s, i) => (
-                <div className="stepPill" key={s.name}>
-                  <div className="stepNum">{i + 1}</div>
+            <div className="blockSub">Un proceso coherente: propósito → personas → plataforma, con backlog vivo y ritmo continuo.</div>
+
+            <div className="opsCard">
+              {/* CÍRCULO */}
+              <div className="ringWrap">
+                <div className="ringCircle" />
+                <div className="ringCenter">
                   <div>
-                    <span className="stepText">{s.name}</span>
-                    <span className="stepHint">· {s.hint}</span>
+                    <div className="ringCenterTitle">Backlog vivo</div>
+                    <div className="ringCenterSub">prioridad con CIO<br/>seguimiento compartido</div>
                   </div>
                 </div>
-              ))}
-            </div>
 
-            {detail && (
-              <>
-                <hr className="hrSoft" />
-                {/* En detalle, ya metes tu ProcessLane antiguo (si quieres) */}
-                <div className="blockTitle" style={{ fontSize: 14, marginBottom: 8 }}>
-                  Detalle (fases)
+                {stages.map((s, i) => (
+                  <div className="stageNode" key={s.name} style={nodePos(i)} onClick={() => setActiveStage(i)}>
+                    <div className={"stageDot " + (activeStage === i ? "stageDotActive" : "")}>{s.n}</div>
+                    <div className="stageLabel">{s.name}<br/><span style={{opacity:.75}}>{s.hint}</span></div>
+                  </div>
+                ))}
+              </div>
+
+              {/* PANEL FASE */}
+              <div className="stagePanel">
+                <div className="stagePanelEyebrow">Fase {active.n} · {active.hint}</div>
+                <div className="stagePanelTitle">{active.name}</div>
+                <div className="stagePanelText">{active.text}</div>
+
+                <div className="stageRow">
+                  <span className="miniTag">Rol líder: {active.roleLead}</span>
+                  {active.tags.map(t => <span className="miniTag" key={t}>{t}</span>)}
                 </div>
-                {/* Reusa tu steps anterior si quieres, o el ProcessLane existente */}
-                {/* <ProcessLane steps={...} detail={detail} /> */}
-              </>
-            )}
+
+                <div className="platformRail" style={{marginTop: 10}}>
+                  {platformCaps.map((c) => (
+                    <span
+                      key={c.key}
+                      className={"platformChip " + (capActive.has(c.key) ? "platformChipActive" : "")}
+                    >
+                      {c.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
+
 
           <div className="block">
             <div className="blockTitle">Roles (valor en cada fase)</div>
@@ -429,7 +527,7 @@ function SlideOferta({ detail, setDetail }) {
 
             <div className="roleMiniGrid">
               {roleMini.map((r) => (
-                <div className="roleMini" key={r.name}>
+                <div className={"roleMini " + (r.phases?.includes(active.n) ? "roleMiniActive" : "")} key={r.name}>
                   <div className="roleMiniHead">
                     <div className="roleMiniName">{r.name}</div>
                     <div className="roleMiniBadge">Fase {r.badge}</div>
