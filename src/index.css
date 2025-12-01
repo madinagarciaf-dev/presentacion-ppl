@@ -1985,15 +1985,15 @@ body{
 .seqRolesGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
+  gap: 6px 12px;
 }
 
 .seqRoleCell {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  padding: 4px 0;
 }
+
 
 .seqStackRow {
   background: white;
@@ -2001,6 +2001,29 @@ body{
   border-radius: var(--r);
   padding: 12px;
   box-shadow: var(--shadow);
+}
+
+.seqStackLines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stackLine {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stackLine.strong .strongTag {
+  background: #0ea5e9;
+  color: white;
+  border: none;
+}
+
+.stackLine.soft .softTag {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
 }
 
 

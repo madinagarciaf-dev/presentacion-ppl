@@ -381,11 +381,10 @@ function SeqDiagram({ steps, detail }) {
           display: "grid",
           gridTemplateColumns: `repeat(${steps.length}, 1fr)`,
           gridTemplateRows: "auto auto auto",
-          gap: "8px 12px",
+          gap: "12px",
         }}
       >
-
-        {/* FILA 1 – Tarjetas de fases */}
+        {/* FILA 1 — CABECERAS DE FASE */}
         {steps.map((s, i) => (
           <div key={s.number} className="seqCol" style={{ gridRow: 1, gridColumn: i + 1 }}>
             <div className={"seqHeader " + s.tone}>
@@ -396,14 +395,14 @@ function SeqDiagram({ steps, detail }) {
           </div>
         ))}
 
-        {/* FILA 2 – ROLES (UNA FILA COMPLETA) */}
+        {/* FILA 2 — ROLES */}
         <div
-          className="seqRolesRow"
+          className="seqRolesRowFull"
           style={{
             gridRow: 2,
             gridColumn: `1 / span ${steps.length}`,
-            marginTop: "6px",
             paddingBottom: "8px",
+            borderBottom: "1px solid #e5e7eb",
           }}
         >
           <div className="seqLabelInside">ROLES</div>
@@ -419,21 +418,46 @@ function SeqDiagram({ steps, detail }) {
           </div>
         </div>
 
-        {/* FILA 3 – STACK AGRUPADO (sólo para Definición + Construcción) */}
+        {/* FILA 3 — STACK (alineado con fases 2 y 3) */}
         <div
-          className="seqStackRow"
+          className="seqStackRowFull"
           style={{
             gridRow: 3,
             gridColumn: "2 / span 2",
-            marginTop: "8px",
           }}
         >
           <div className="seqLabelInside">STACK</div>
-          <div className="seqTags">
-            <span className="seqTag tech">Power Platform (Power Apps, Power Pages, Power Automate, Dataverse, AI HUB, Copilot Studio)</span>
-            <span className="seqTag tech">Azure (Azure Functions, Azure Automation, Azure AI Foundry)</span>
-            <span className="seqTag tech">Microsoft 365 (Teams, SharePoint, Outlook)</span>
-            <span className="seqTag tech">Integraciones externas (SAP, Salesforce, Oracle, APIs REST)</span>
+
+          <div className="seqStackLines">
+
+            {/* 01 — Línea principal (Power Platform) */}
+            <div className="stackLine strong">
+              <span className="seqTag tech strongTag">
+                Power Platform (Power Apps, Power Pages, Power Automate, Dataverse, AI HUB, Copilot Studio)
+              </span>
+            </div>
+
+            {/* 02 — Azure */}
+            <div className="stackLine soft">
+              <span className="seqTag tech softTag">
+                Azure (Azure Functions, Azure Automation, Azure AI Foundry)
+              </span>
+            </div>
+
+            {/* 03 — Microsoft 365 */}
+            <div className="stackLine soft">
+              <span className="seqTag tech softTag">
+                Microsoft 365 (Teams, SharePoint, Outlook, OneDrive)
+              </span>
+            </div>
+
+            {/* 04 — Integraciones externas */}
+            <div className="stackLine soft">
+              <span className="seqTag tech softTag">
+                Integraciones externas (SAP, Salesforce, Oracle, APIs REST)
+              </span>
+            </div>
+
           </div>
         </div>
 
@@ -441,6 +465,7 @@ function SeqDiagram({ steps, detail }) {
     </div>
   );
 }
+
 
 
 
