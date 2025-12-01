@@ -754,25 +754,3 @@ function SvgPlatform() {
     </svg>
   );
 }
-function SvgTarget() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Zm0-13a5 5 0 1 0 5 5 5 5 0 0 0-5-5Zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z" fill="currentColor"/>
-    </svg>
-  );
-}
-function SvgUsers() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4ZM8 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.31 0-6 1.79-6 4v1h12v-1c0-2.21-2.69-4-6-4Zm8 0c-.62 0-1.21.06-1.77.17A5.3 5.3 0 0 1 18 18v1h4v-1c0-2.21-2.69-4-6-4Z" fill="currentColor"/>
-    </svg>
-  );
-}
-function SvgPlatform() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M3 4h8v8H3V4Zm10 0h8v5h-8V4ZM3 14h8v6H3v-6Zm10-3h8v9h-8v-9Z" fill="currentColor"/>
-    </svg>
-  );
-}
-
