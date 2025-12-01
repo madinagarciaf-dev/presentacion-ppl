@@ -252,221 +252,295 @@ function BrandIcon() {
 /* --------------------------- SLIDE 1 --------------------------- */
 
 function SlideOferta({ detail, setDetail }) {
+  // ✅ 3 pilares (no repiten el ProcessLane)
   const pillars = [
     {
       title: "Propósito",
-      kicker: "Transformación continua: portfolio vivo de soluciones, no proyectos sueltos.",
+      kicker: "Transformación continua: portfolio vivo de valor.",
       bullets: [
         "Backlog vivo, priorizado por impacto con CIO.",
         "Cadencia de entregas + evolución constante.",
-        "Seguimiento compartido: avance, stoppers y decisiones.",
+        "Transparencia: avance, stoppers y decisiones.",
       ],
-      chips: ["Transformación continua", "Prioridad CIO", "Transparencia"],
       icon: <SvgTarget />,
     },
     {
       title: "Personas",
-      kicker: "Convertimos conocimiento tácito en proceso digital gobernado (uso real, no PPTs).",
+      kicker: "Convertimos conocimiento tácito en proceso gobernado.",
       bullets: [
         "Discovery con stakeholders y empatía con el proceso real.",
         "Definición funcional clara + optimización cuando aplica.",
-        "Adopción por rol: formación, mensajes clave y soporte.",
+        "Comunicación adaptada al decisor (síntesis o detalle).",
       ],
-      chips: ["Discovery", "Definición", "Adopción"],
       icon: <SvgUsers />,
     },
     {
       title: "Plataforma",
-      kicker: "Microsoft (Power Platform + Azure + Datos + IA) aplicado con ALM y gobierno.",
+      kicker: "Microsoft aplicado con ALM, gobierno, datos e IA.",
       bullets: [
-        "Datos y seguridad: modelo + roles/permisos (RLS).",
-        "Apps multicanal + agentes end-to-end.",
+        "Modelo de datos + seguridad (roles / permisos / RLS).",
+        "Apps multicanal con UX guiada + agentes end-to-end.",
         "Integración bidireccional (conectores y APIs).",
       ],
-      chips: ["Dataverse", "Automate", "IA", "ALM"],
       icon: <SvgPlatform />,
     },
   ];
 
-  const steps = [
-    { name: "Discovery", hint: "proceso real" },
-    { name: "Definición", hint: "requisitos" },
-    { name: "Prioridad", hint: "backlog" },
-    { name: "Construcción", hint: "sprints + ALM" },
-    { name: "Evolución", hint: "uso real" },
-  ];
-
-  const roleMini = [
+  // ✅ ProcessLane = fases (no repite Propósito/Personas/Plataforma)
+  const phases = [
     {
-      name: "Negocio · Discovery & Prioridad",
-      badge: "1–3",
-      do: ["Entrevistas clave", "Backlog y criterios de valor"],
-      know: ["Empatía + visión transversal", "Necesidad → requisito"],
+      title: "Discovery",
+      textShort: "Entender el proceso real y el impacto (stakeholders, contexto, dolor).",
+      text:
+        "Levantamos el proceso end-to-end con usuarios clave, identificamos fricciones, riesgos y oportunidades. " +
+        "Aterrizamos objetivos medibles y criterios de valor.",
+      tags: ["Stakeholders", "Proceso real", "Impacto"],
     },
     {
-      name: "Arquitectura · Diseño & Viabilidad",
-      badge: "2–3",
-      do: ["Patrón: core/módulo/satélite", "Modelo datos + roles/permisos"],
-      know: ["Escalabilidad sin redundancias", "Coste, riesgo y viabilidad"],
+      title: "Definición",
+      textShort: "Requisitos + optimización del flujo + criterio de éxito.",
+      text:
+        "Convertimos necesidad en definición funcional clara; optimizamos el proceso si aplica y definimos " +
+        "qué es éxito (KPIs / tiempos / trazabilidad).",
+      tags: ["Requisitos", "Optimización", "KPIs"],
     },
     {
-      name: "Desarrollo · Construcción",
-      badge: "4",
-      do: ["Apps + lógica + validaciones", "Agentes, integraciones y hardening"],
-      know: ["Buenas prácticas PP + técnica", "Gestión de stoppers"],
+      title: "Backlog & Prioridad",
+      textShort: "Backlog vivo, priorización con CIO y seguimiento compartido.",
+      text:
+        "Gestionamos un backlog vivo, priorizado por valor/urgencia con CIO y responsables. " +
+        "Seguimiento transparente de avance, stoppers y decisiones.",
+      tags: ["Backlog", "CIO", "Transparencia"],
     },
     {
-      name: "Adopción & Gobierno · Continuidad",
-      badge: "5",
-      do: ["Plan adopción + soporte inicial", "Gobierno (DLP/ALM) + KPIs uso"],
-      know: ["Gestión del cambio", "Sostenibilidad del portfolio"],
+      title: "Construcción",
+      textShort: "Sprints + calidad + integración + despliegues controlados.",
+      text:
+        "Construcción iterativa, pruebas, hardening y despliegues con ALM. Integraciones y automatizaciones " +
+        "end-to-end (y Azure para lógica compleja cuando conviene).",
+      tags: ["Agile", "ALM", "Integración"],
+    },
+    {
+      title: "Adopción & Evolución",
+      textShort: "Formación por rol + soporte inicial + mejora continua del portfolio.",
+      text:
+        "Adopción por rol, soporte inicial y medición. El portfolio evoluciona (nuevas necesidades, ajustes, " +
+        "automatización e IA).",
+      tags: ["Adopción", "Uso real", "Evolución"],
     },
   ];
 
   return (
     <SlideShell
       badge="Lo que ofrecemos"
-      title="Transformación continua con Power Platform"
-      subtitle="Propósito · Personas · Plataforma: un modelo integrado para construir un portfolio vivo de soluciones digitales."
+      title="Propósito · Personas · Plataforma (un modelo integrado)"
+      subtitle="Transformación continua: descubrimos, priorizamos y construimos un portfolio vivo de soluciones."
       rightNote="Pulsa D para Detalle"
       detail={detail}
       setDetail={setDetail}
     >
-      <div className="offerWrap">
-        {/* HERO */}
-        <div className="offerHero">
-          <div className="offerHeroLeft">
-            <div className="offerEyebrow">En 10 segundos</div>
-            <div className="offerHeadline">La transformación no es una entrega. Es un sistema operativo.</div>
-            <p className="offerSub">
-              Identificamos necesidades, las convertimos en definición clara, priorizamos con CIO y construimos
-              soluciones en producción con un ritmo continuo (y gobernado).
-            </p>
-          </div>
-
-          <div className="offerHeroRight">
-            <div className="offerKpis">
-              <div className="kpiCard">
-                <div className="kpiLabel">Enfoque</div>
-                <div className="kpiValue">Impacto</div>
-                <div className="kpiHint">valor &gt; entregables</div>
+      <div className="grid2">
+        <div className="col">
+          <Section
+            eyebrow="EN 10 SEGUNDOS"
+            title="La transformación no es una entrega. Es un sistema operativo."
+            right={
+              <div className="metricsRow">
+                <Metric label="Enfoque" value="Impacto" hint="valor > entregables" tone="blue" />
+                <Metric label="Modelo" value="Continuo" hint="no one-shot" tone="teal" />
+                <Metric label="Cadencia" value="Iterativa" hint="agile + transparencia" tone="teal" />
               </div>
-              <div className="kpiCard">
-                <div className="kpiLabel">Modelo</div>
-                <div className="kpiValue">Continuo</div>
-                <div className="kpiHint">no one-shot</div>
+            }
+          >
+            {/* ✅ Menos negrita: solo una frase clave */}
+            <div className="callout">
+              <div className="calloutText">
+                Unimos negocio, arquitectura, desarrollo y adopción bajo un backlog vivo, con gobierno y
+                transparencia.
               </div>
-              <div className="kpiCard">
-                <div className="kpiLabel">Cadencia</div>
-                <div className="kpiValue">Iterativa</div>
-                <div className="kpiHint">agile + transparencia</div>
+              <div className="calloutChips">
+                <Chip tone="strong">Backlog vivo</Chip>
+                <Chip tone="strong">Prioridad con CIO</Chip>
+                <Chip tone="strong">Seguimiento compartido</Chip>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* 3 BLOQUES GIGANTES */}
-        <div className="offerPillars">
-          {pillars.map((p) => (
-            <div className="pillarBig" key={p.title}>
-              <div className="pillarBar" />
-              <div className="pillarHead">
-                <div className="pillarIcon">{p.icon}</div>
-                <div>
-                  <div className="pillarTitle">{p.title}</div>
-                  <div className="pillarKicker">{p.kicker}</div>
-                </div>
-              </div>
-
-              <ul className="pillarList">
-                {cut(p.bullets, 2, detail).map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-
-              <div className="pillarChips">
-                {cut(p.chips, 3, detail).map((c) => (
-                  <span className="pill" key={c}>{c}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* ABAJO: PROCESO + ROLES (resumen) */}
-        <div className="offerBottom">
-          <div className="block">
-            <div className="blockTitle">Cómo operamos</div>
-            <div className="blockSub">De discovery a evolución, con backlog vivo y ritmo continuo.</div>
-            <div className="stepRow">
-              {steps.map((s, i) => (
-                <div className="stepPill" key={s.name}>
-                  <div className="stepNum">{i + 1}</div>
-                  <div>
-                    <span className="stepText">{s.name}</span>
-                    <span className="stepHint">· {s.hint}</span>
-                  </div>
-                </div>
+            {/* ✅ 3 pilares separados (claridad visual) */}
+            <div className="pillarRow">
+              {pillars.map((p) => (
+                <PillarCard
+                  key={p.title}
+                  icon={p.icon}
+                  title={p.title}
+                  kicker={p.kicker}
+                  bullets={p.bullets}
+                  detail={detail}
+                />
               ))}
             </div>
 
-            {detail && (
-              <>
-                <hr className="hrSoft" />
-                {/* En detalle, ya metes tu ProcessLane antiguo (si quieres) */}
-                <div className="blockTitle" style={{ fontSize: 14, marginBottom: 8 }}>
-                  Detalle (fases)
-                </div>
-                {/* Reusa tu steps anterior si quieres, o el ProcessLane existente */}
-                {/* <ProcessLane steps={...} detail={detail} /> */}
-              </>
-            )}
-          </div>
+            <hr className="hrSoft" />
 
-          <div className="block">
-            <div className="blockTitle">Roles (valor en cada fase)</div>
-            <div className="blockSub">4 perfiles que convierten necesidad en solución adoptada.</div>
+            {/* ✅ Proceso en fases (sin repetir pilares) */}
+            <div className="sectionTitle" style={{ marginBottom: 10 }}>
+              Cómo trabajamos (de discovery a evolución)
+            </div>
+            <ProcessLane steps={phases} detail={detail} />
+          </Section>
 
-            <div className="roleMiniGrid">
-              {roleMini.map((r) => (
-                <div className="roleMini" key={r.name}>
-                  <div className="roleMiniHead">
-                    <div className="roleMiniName">{r.name}</div>
-                    <div className="roleMiniBadge">Fase {r.badge}</div>
-                  </div>
+          <Section eyebrow="PLATAFORMA (CAPACIDADES)" title="Qué habilita Microsoft (y cómo lo aplicamos)">
+            <div className="capsGrid">
+              <CapabilityGroup
+                title="Datos & Seguridad"
+                items={[
+                  "Dataverse como núcleo de datos (modelo robusto)",
+                  "Roles/permisos por tabla y fila (RLS)",
+                  "Auditoría, trazabilidad y control de acceso real",
+                ]}
+                icon={<SvgDb />}
+                detail={detail}
+              />
+              <CapabilityGroup
+                title="Apps & Experiencia"
+                items={[
+                  "Apps web/móvil/tablet con UX guiada",
+                  "Validaciones, vistas por rol, navegación fluida",
+                  "Interfaz adaptable (SaaS) sin miedo a romper",
+                ]}
+                icon={<SvgApp />}
+                detail={detail}
+              />
+              <CapabilityGroup
+                title="Agentes & Automatización"
+                items={[
+                  "Power Automate para flujos end-to-end",
+                  "Aprobaciones, generación de docs (PDF/Excel/Word)",
+                  "Azure Functions/Automation para lógica compleja si conviene",
+                ]}
+                icon={<SvgFlow />}
+                detail={detail}
+              />
+              <CapabilityGroup
+                title="Integración & APIs"
+                items={[
+                  "Conectores estándar + personalizados",
+                  "Consumo y exposición de APIs (bidireccional)",
+                  "ERP/CRM/HR/SharePoint/Teams/Outlook",
+                ]}
+                icon={<SvgLink />}
+                detail={detail}
+              />
+              <CapabilityGroup
+                title="IA aplicada a proceso"
+                items={[
+                  "Clasificación y extracción documental",
+                  "Asistentes/Copilots y RAG corporativo",
+                  "Decisiones contextuales en flujos (proactivo)",
+                ]}
+                icon={<SvgAi />}
+                detail={detail}
+              />
+              <CapabilityGroup
+                title="ALM & Gobierno"
+                items={[
+                  "Entornos, pipelines, variables, despliegues controlados",
+                  "DLP, cumplimiento y control de conectores",
+                  "Monitorización + evolución continua del portfolio",
+                ]}
+                icon={<SvgShield />}
+                detail={detail}
+              />
+            </div>
+          </Section>
+        </div>
 
-                  <div className="roleMiniBody">
-                    <div className="rolePane do">
-                      <div className="rolePaneTitle">Qué hace</div>
-                      <ul>
-                        {cut(r.do, 2, detail).map((x) => <li key={x}>{x}</li>)}
-                      </ul>
-                    </div>
-                    <div className="rolePane know">
-                      <div className="rolePaneTitle">Qué aporta</div>
-                      <ul>
-                        {cut(r.know, 2, detail).map((x) => <li key={x}>{x}</li>)}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              ))}
+        <div className="col">
+          <Section eyebrow="PERSONAS (ROLES)" title="Roles y valor aportado en cada fase">
+            <div className="rolesGrid">
+              <RoleCard
+                role="Negocio · Discovery & Prioridad"
+                competencyTitle="Competencias"
+                competencies={[
+                  "Empatía con usuarios y visión transversal",
+                  "Traducir necesidad → requisito",
+                  "Detección de riesgos e ineficiencias",
+                  "Comunicación adaptada al decisor",
+                ]}
+                taskTitle="Qué aporta al proceso"
+                tasks={[
+                  "Entrevistas con stakeholders clave",
+                  "Mapeo y optimización del proceso",
+                  "Backlog de necesidades y criterios de valor",
+                  "Priorización con CIO / responsables",
+                ]}
+                detail={detail}
+              />
+              <RoleCard
+                role="Arquitectura · Diseño & Viabilidad"
+                competencyTitle="Competencias"
+                competencies={[
+                  "Arquitectura de datos sin redundancias",
+                  "Diseño funcional y técnico consistente",
+                  "Integración con sistemas existentes y nuevos",
+                  "Evaluación de coste, riesgo y viabilidad",
+                ]}
+                taskTitle="Qué aporta al proceso"
+                tasks={[
+                  "Decide patrón: core / módulo / satélite",
+                  "Modelo de datos + roles/permisos",
+                  "Diseño de pantallas, reglas y agentes",
+                  "Estimación (incl. costes recurrentes/licencias)",
+                ]}
+                detail={detail}
+              />
+              <RoleCard
+                role="Desarrollo · Construcción"
+                competencyTitle="Competencias"
+                competencies={[
+                  "Buenas prácticas PP + técnica (eficiencia/código)",
+                  "Gestión de stoppers e incidencias",
+                  "Modularidad e integración API",
+                  "IA aplicada y automatización avanzada",
+                ]}
+                taskTitle="Qué aporta al proceso"
+                tasks={[
+                  "Desarrolla apps (UX, lógica, validaciones)",
+                  "Flujos/agentes (aprobaciones, cálculos, docs)",
+                  "Integraciones (ERP/CRM/HR/APIs/SharePoint)",
+                  "Pruebas, hardening y despliegues",
+                ]}
+                detail={detail}
+              />
+              <RoleCard
+                role="Adopción & Gobierno · Continuidad"
+                competencyTitle="Competencias"
+                competencies={[
+                  "Formación por rol + gestión del cambio",
+                  "Gobernanza (DLP/entornos/seguridad)",
+                  "Observabilidad del uso y mejora continua",
+                  "Estandarización y sostenibilidad",
+                ]}
+                taskTitle="Qué aporta al proceso"
+                tasks={[
+                  "Plan de adopción + mensajes clave",
+                  "Acompañamiento inicial + soporte dudas",
+                  "Gobierno ALM/DLP y control de conectores",
+                  "Seguimiento de KPIs de uso y evolución",
+                ]}
+                detail={detail}
+              />
             </div>
 
-            {detail && (
-              <>
-                <hr className="hrSoft" />
-                {/* Aquí, en detalle, puedes volver a mostrar tus RoleCard grandes si quieres */}
-                {/* <div className="rolesGrid"> ... RoleCard ... </div> */}
-              </>
-            )}
-          </div>
+            {/* ✅ Menos negrita */}
+            <div className="miniNote">
+              Clave: propósito + roles + plataforma, con backlog vivo y ritmo continuo.
+            </div>
+          </Section>
         </div>
       </div>
     </SlideShell>
   );
 }
-
 
 
 /* --------------------------- SLIDE 2 --------------------------- */
@@ -754,25 +828,3 @@ function SvgPlatform() {
     </svg>
   );
 }
-function SvgTarget() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Zm0-13a5 5 0 1 0 5 5 5 5 0 0 0-5-5Zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3Z" fill="currentColor"/>
-    </svg>
-  );
-}
-function SvgUsers() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4ZM8 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm0 2c-3.31 0-6 1.79-6 4v1h12v-1c0-2.21-2.69-4-6-4Zm8 0c-.62 0-1.21.06-1.77.17A5.3 5.3 0 0 1 18 18v1h4v-1c0-2.21-2.69-4-6-4Z" fill="currentColor"/>
-    </svg>
-  );
-}
-function SvgPlatform() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M3 4h8v8H3V4Zm10 0h8v5h-8V4ZM3 14h8v6H3v-6Zm10-3h8v9h-8v-9Z" fill="currentColor"/>
-    </svg>
-  );
-}
-
