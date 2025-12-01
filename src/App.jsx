@@ -251,192 +251,215 @@ function BrandIcon() {
 
 /* --------------------------- SLIDE 1: OFERTA (SECUENCIAL) --------------------------- */
 
+/* --------------------------- SLIDE 1: OFERTA (MEGA DETALLE) --------------------------- */
+
 function SlideOferta({ detail, setDetail }) {
-  // Datos maestros del proceso secuencial
-  const sequence = [
-    {
-      id: 1,
-      phase: "Discovery",
-      desc: "Entender la necesidad real y el dolor del usuario.",
-      roles: ["Negocio", "Stakeholders"],
-      tech: ["Teams", "SharePoint", "Outlook"],
-      color: "teal"
-    },
-    {
-      id: 2,
-      phase: "Definición",
-      desc: "Diseño funcional, modelo de datos y UX.",
-      roles: ["Arquitecto", "Negocio"],
-      tech: ["Dataverse", "Whiteboard", "Azure OpenAI"],
-      color: "teal"
-    },
-    {
-      id: 3,
-      phase: "Prioridad",
-      desc: "Gestión de Backlog y aprobación de valor.",
-      roles: ["Product Owner", "CIO"],
-      tech: ["Azure DevOps", "Planner", "Power BI"],
-      color: "blue"
-    },
-    {
-      id: 4,
-      phase: "Construcción",
-      desc: "Desarrollo de Apps, Agentes e Integraciones.",
-      roles: ["Desarrollador", "Arquitecto"],
-      tech: ["Power Apps", "Automate", "Azure Foundry", "AI Hub"],
-      color: "blue"
-    },
-    {
-      id: 5,
-      phase: "Evolución",
-      desc: "Adopción, gobierno y mejora continua.",
-      roles: ["Adopción", "Soporte"],
-      tech: ["Fabric", "Governance", "Viva"],
-      color: "purple"
-    }
+  
+  // Fases del Proceso (Secuencial)
+  const phases = [
+    { id: 1, title: "Consultoría & Análisis", sub: "Entender vs. Pedir", icon: "🧠" },
+    { id: 2, title: "Arquitectura & Diseño", sub: "Datos + Seguridad", icon: "📐" },
+    { id: 3, title: "Desarrollo Iterativo", sub: "Sprints + Calidad", icon: "⚙️" },
+    { id: 4, title: "Adopción & Formación", sub: "Gestión del Cambio", icon: "🚀" },
+    { id: 5, title: "Evolución Continua", sub: "Mejora constante", icon: "📈" },
   ];
-
-  // Datos detallados para las tarjetas inferiores
-  const details = {
-    phases: [
-      { t: "Discovery", d: "Detectamos procesos ocultos y conocimiento tácito mediante entrevistas." },
-      { t: "Definición", d: "Traducimos necesidades a requisitos técnicos, modelo de datos y seguridad." },
-      { t: "Construcción", d: "Iteraciones rápidas (Sprints) combinando Low-Code y Pro-Code." },
-      { t: "Adopción", d: "Gestión del cambio para asegurar que la herramienta se usa realmente." }
-    ],
-    roles: [
-      { t: "Negocio & PO", d: "Define el 'Qué' y prioriza por valor.", icon: "👔" },
-      { t: "Arquitecto", d: "Diseña el modelo de datos escalable y seguro.", icon: "📐" },
-      { t: "Maker/Dev", d: "Construye la solución (Power Platform + Azure).", icon: "💻" },
-      { t: "Gobierno", d: "Asegura cumplimiento, seguridad y ALM.", icon: "🛡️" }
-    ],
-    tech: [
-      { t: "Power Platform", d: "Apps, Automate, Dataverse para velocidad.", group: "Core" },
-      { t: "Azure & AI", d: "OpenAI, AI Hub, Foundry para inteligencia.", group: "Intelligence" },
-      { t: "M365 & Fabric", d: "Teams, SharePoint y Datos unificados.", group: "Collab" }
-    ]
-  };
-
-  const [activeTab, setActiveTab] = useState("all"); // 'all', 'roles', 'tech'
 
   return (
     <SlideShell
-      badge="Nuestro Modelo Operativo"
-      title="Transformación Digital End-to-End"
-      subtitle="Un flujo continuo donde Personas, Procesos y Plataforma trabajan al unísono."
-      rightNote="Ver detalle abajo"
+      badge="Manifiesto Operativo"
+      title="Propuesta de Valor Real: Personas + Tecnología"
+      subtitle="La tecnología es el vehículo, pero el valor lo crea un equipo que sabe analizar, modelar y operacionalizar procesos."
+      rightNote="Vista Detallada Activa"
       detail={detail}
       setDetail={setDetail}
     >
-      <div className="seqWrapper">
+      <div className="megaWrapper">
         
-        {/* --- NIVEL SUPERIOR: DIAGRAMA SECUENCIAL --- */}
-        <div className="seqContainer">
-          {sequence.map((step, i) => (
-            <div className="seqCol" key={step.id}>
-              {/* Header Fase */}
-              <div className={`seqHeader seq-${step.color}`}>
-                <div className="seqNumber">0{step.id}</div>
-                <div className="seqTitle">{step.phase}</div>
-                <div className="seqDesc">{step.desc}</div>
+        {/* --- 1. DIAGRAMA SECUENCIAL (El Flujo) --- */}
+        <div className="sequenceRail">
+          {phases.map((p, i) => (
+            <div className="seqNode" key={p.id}>
+              <div className="seqNodeHeader">
+                <span className="seqIcon">{p.icon}</span>
+                <span className="seqIndex">0{p.id}</span>
               </div>
-
-              {/* Conector Visual */}
-              <div className="seqLine" />
-
-              {/* Bloque Roles */}
-              <div className="seqBlock roleBlock">
-                <div className="seqLabel">Personas</div>
-                <div className="seqTags">
-                  {step.roles.map(r => <span key={r} className="seqTag role">{r}</span>)}
-                </div>
-              </div>
-
-              {/* Bloque Plataforma */}
-              <div className="seqBlock techBlock">
-                <div className="seqLabel">Plataforma</div>
-                <div className="seqTags">
-                  {step.tech.map(t => <span key={t} className="seqTag tech">{t}</span>)}
-                </div>
-              </div>
-              
-              {/* Flecha de flujo (excepto el último) */}
-              {i < sequence.length - 1 && <div className="seqArrow">→</div>}
+              <div className="seqTitle">{p.title}</div>
+              <div className="seqSub">{p.sub}</div>
+              {i < phases.length - 1 && <div className="seqConnect"></div>}
             </div>
           ))}
         </div>
 
-        {/* --- NIVEL INFERIOR: DETALLE EN TARJETAS --- */}
-        <div className="seqDetailsSection">
-          <div className="detailTabs">
-            <button className={`tabBtn ${activeTab==='all'?'active':''}`} onClick={()=>setActiveTab('all')}>Visión Completa</button>
-            <button className={`tabBtn ${activeTab==='tech'?'active':''}`} onClick={()=>setActiveTab('tech')}>Stack Tecnológico</button>
+        {/* --- 2. EL MOTOR (3 COLUMNAS DENSAS) --- */}
+        <div className="deepDiveGrid">
+          
+          {/* COLUMNA 1: ROLES (PERSONAS) */}
+          <div className="deepCol">
+            <div className="deepHeader col-teal">
+              <div className="deepIcon">👥</div>
+              <div>
+                <div className="deepTitle">El Equipo (Roles)</div>
+                <div className="deepSub">Orquestación de perfiles clave</div>
+              </div>
+            </div>
+            <div className="deepContent">
+              <RoleDetailBox 
+                title="Negocio & Consultoría"
+                desc="Convierten un 'quiero un Excel' en un modelo real."
+                items={[
+                  "Analizan procesos y detectan riesgos.",
+                  "Priorizan casos de uso por valor.",
+                  "Ordenan y guían al cliente (consultoría)."
+                ]}
+              />
+              <RoleDetailBox 
+                title="Arquitectos Técnicos"
+                desc="Estructura, seguridad y coherencia."
+                items={[
+                  "Definen modelo de datos y relaciones.",
+                  "Evalúan integración (SAP, Salesforce).",
+                  "Aseguran escalabilidad y permisos."
+                ]}
+              />
+              <RoleDetailBox 
+                title="Desarrolladores (Makers + Pro)"
+                desc="Calidad, código eficiente y lógica."
+                items={[
+                  "Lógica compleja, Power FX optimizado.",
+                  "Integraciones via APIs y Azure Functions.",
+                  "Gestión de errores y logs."
+                ]}
+              />
+               <RoleDetailBox 
+                title="Expertos en Adopción"
+                desc="Para que la solución no muera."
+                items={[
+                  "Formaciones por rol y mensajes clave.",
+                  "Acompañamiento post-go-live.",
+                  "Garantía de uso real."
+                ]}
+              />
+            </div>
           </div>
 
-          <div className="cardsRail">
-            {/* Renderizado condicional basado en tabs o mostrar todo mezclado ordenadamente */}
-            
-            {/* FASES DETALLE */}
-            {(activeTab === 'all') && (
-               <div className="railGroup">
-                 <div className="railTitle">Profundidad del Proceso</div>
-                 <div className="railRow">
-                   {details.phases.map(p => (
-                     <div className="infoCard" key={p.t}>
-                       <div className="infoTitle">{p.t}</div>
-                       <div className="infoText">{p.d}</div>
-                     </div>
-                   ))}
-                 </div>
-               </div>
-            )}
+          {/* COLUMNA 2: CAPACIDADES (QUÉ HACEMOS) */}
+          <div className="deepCol">
+            <div className="deepHeader col-blue">
+              <div className="deepIcon">🏭</div>
+              <div>
+                <div className="deepTitle">Lo que construimos</div>
+                <div className="deepSub">Módulos digitales alrededor del ERP</div>
+              </div>
+            </div>
+            <div className="deepContent">
+              <div className="capBox">
+                <div className="capTitle">1. Ecosistema Integrado</div>
+                <div className="capText">
+                  No somos una isla. Nos unimos a <strong>SAP, Salesforce, Dynamics, Oracle</strong> mediante conectores estándar o Custom Connectors (APIs).
+                </div>
+              </div>
+              <div className="capBox">
+                <div className="capTitle">2. Capa de Datos (Dataverse)</div>
+                <div className="capText">
+                  Creamos nuevas tablas, relaciones complejas y seguridad nivel registro (RLS) que el ERP no permite o encarece.
+                </div>
+              </div>
+              <div className="capBox">
+                <div className="capTitle">3. Lógica de Negocio</div>
+                <div className="capText">
+                  Apps (Canvas/Model) con validaciones, navegación guiada, notificaciones y experiencia móvil/escritorio fluida.
+                </div>
+              </div>
+              <div className="capBox">
+                <div className="capTitle">4. Agentes & Automatización</div>
+                <div className="capText">
+                  <ul className="miniList">
+                    <li>Gestión de aprobaciones complejas.</li>
+                    <li>Generación de documentos (PDF, Excel).</li>
+                    <li>Movimiento de datos entre sistemas.</li>
+                    <li>Orquestación con IA (clasificación, análisis).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            {/* ROLES DETALLE */}
-            {(activeTab === 'all') && (
-               <div className="railGroup">
-                 <div className="railTitle">Roles Clave</div>
-                 <div className="railRow">
-                   {details.roles.map(r => (
-                     <div className="infoCard roleCardStyle" key={r.t}>
-                       <div className="infoIcon">{r.icon}</div>
-                       <div>
-                         <div className="infoTitle">{r.t}</div>
-                         <div className="infoText">{r.d}</div>
-                       </div>
-                     </div>
-                   ))}
-                 </div>
-               </div>
-            )}
+          {/* COLUMNA 3: PLATAFORMA (TECNOLOGÍA) */}
+          <div className="deepCol">
+            <div className="deepHeader col-purple">
+              <div className="deepIcon">💻</div>
+              <div>
+                <div className="deepTitle">Plataforma Tecnológica</div>
+                <div className="deepSub">Microsoft Cloud Stack</div>
+              </div>
+            </div>
+            <div className="deepContent">
+              <TechStackItem 
+                area="Power Platform (Core)"
+                tools={["Power Apps", "Power Automate", "Dataverse", "Copilot Studio", "Power Pages"]}
+              />
+              <TechStackItem 
+                area="Azure (Pro-Code & IA)"
+                tools={["Azure Functions", "API Management", "Azure OpenAI", "Azure SQL", "Logic Apps"]}
+              />
+              <TechStackItem 
+                area="Datos & Analytics"
+                tools={["Microsoft Fabric", "Power BI", "Data Lake", "Purview"]}
+              />
+              <TechStackItem 
+                area="Colaboración (M365)"
+                tools={["Microsoft Teams", "SharePoint Online", "Outlook", "OneDrive"]}
+              />
+              <div className="almBox">
+                <strong>Fundamento ALM:</strong> Entornos, Pipelines, Variables, Soluciones gestionadas y Seguridad controlada.
+              </div>
+            </div>
+          </div>
 
-            {/* TECH DETALLE */}
-            {(activeTab === 'all' || activeTab === 'tech') && (
-               <div className="railGroup">
-                 <div className="railTitle">Power Platform + Azure + M365</div>
-                 <div className="railRow">
-                   <TechCard 
-                      title="Power Platform" 
-                      items={["Power Apps", "Power Automate", "Dataverse", "Copilot Studio"]} 
-                      icon={<SvgPlatform />}
-                   />
-                   <TechCard 
-                      title="Azure & IA Avanzada" 
-                      items={["Azure OpenAI", "Azure Foundry", "AI Hub", "API Management"]} 
-                      icon={<SvgAi />}
-                   />
-                   <TechCard 
-                      title="Colaboración & Datos" 
-                      items={["Teams & SharePoint", "Microsoft Fabric", "Outlook", "OneDrive"]} 
-                      icon={<SvgDb />}
-                   />
-                 </div>
-               </div>
-            )}
+        </div>
+
+        {/* --- 3. MODELO DE RELACIÓN (FOOTER) --- */}
+        <div className="modelFooter">
+          <div className="modelBox bad">
+            <div className="modelTitle">❌ Proveedor de "One-Shot"</div>
+            <div className="modelText">Proyectos rígidos, tensión por el alcance, presupuesto cerrado que bloquea cambios. Se entrega y se olvida.</div>
+          </div>
+          <div className="modelArrow">TRANSICIÓN A</div>
+          <div className="modelBox good">
+            <div className="modelTitle">✅ Partner de Transformación Continua</div>
+            <div className="modelText">
+              Equipo estable (Funcional + Dev + Adopción). Backlog vivo priorizado por valor. Se paga por <strong>capacidad</strong>, se entrega <strong>impacto</strong> constante.
+            </div>
           </div>
         </div>
 
       </div>
     </SlideShell>
+  );
+}
+
+// Sub-componente para detalles de rol
+function RoleDetailBox({ title, desc, items }) {
+  return (
+    <div className="roleDetailCard">
+      <div className="rdTitle">{title}</div>
+      <div className="rdDesc">{desc}</div>
+      <ul className="rdList">
+        {items.map((it, i) => <li key={i}>{it}</li>)}
+      </ul>
+    </div>
+  );
+}
+
+// Sub-componente para stack tecnológico
+function TechStackItem({ area, tools }) {
+  return (
+    <div className="techItem">
+      <div className="tiArea">{area}</div>
+      <div className="tiTools">
+        {tools.map(t => <span key={t} className="tiTag">{t}</span>)}
+      </div>
+    </div>
   );
 }
 

@@ -1345,3 +1345,193 @@ body{
     right: 50%;
   }
 }
+/* =========================================
+   MEGA SLIDE OPERATIVA (NUEVO DISEÑO)
+   ========================================= */
+
+.megaWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+/* --- 1. SECUENCIA SUPERIOR --- */
+.sequenceRail {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  position: relative;
+}
+
+.seqNode {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.seqConnect {
+  position: absolute;
+  top: 18px; /* Alinear con el icono */
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: var(--line);
+  z-index: -1;
+}
+
+.seqNodeHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  background: #fff; /* Tapar la linea */
+  padding: 0 8px;
+}
+
+.seqIcon { font-size: 20px; }
+.seqIndex { 
+  font-size: 10px; font-weight: 900; 
+  color: var(--muted); opacity: 0.5; 
+}
+.seqTitle {
+  font-size: 13px; font-weight: 900; color: var(--ink);
+  margin-bottom: 2px;
+}
+.seqSub {
+  font-size: 11px; color: var(--muted); font-weight: 600;
+}
+
+/* --- 2. GRID PROFUNDO (3 COLUMNAS) --- */
+.deepDiveGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  flex: 1;
+  min-height: 0; /* Permite scroll interno si fuera necesario */
+}
+
+.deepCol {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.deepHeader {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.col-teal { background: linear-gradient(to right, rgba(0,167,157,0.1), rgba(0,167,157,0.02)); border-left: 4px solid var(--teal); }
+.col-blue { background: linear-gradient(to right, rgba(0,79,159,0.1), rgba(0,79,159,0.02)); border-left: 4px solid var(--blue); }
+.col-purple { background: linear-gradient(to right, rgba(123,97,255,0.1), rgba(123,97,255,0.02)); border-left: 4px solid #7b61ff; }
+
+.deepIcon { font-size: 20px; }
+.deepTitle { font-size: 14px; font-weight: 950; color: var(--ink); text-transform: uppercase; letter-spacing: -0.01em; }
+.deepSub { font-size: 11px; color: var(--muted); }
+
+.deepContent {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+/* Estilos Carta de Rol */
+.roleDetailCard {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.rdTitle { font-size: 12px; font-weight: 900; color: var(--teal); margin-bottom: 2px; }
+.rdDesc { font-size: 11px; font-style: italic; color: var(--muted); margin-bottom: 6px; }
+.rdList { margin: 0; padding-left: 14px; font-size: 11px; color: var(--ink); line-height: 1.4; }
+
+/* Estilos Capacidades */
+.capBox {
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  border-left: 3px solid var(--blue);
+}
+.capTitle { font-size: 12px; font-weight: 900; color: var(--ink); margin-bottom: 4px; }
+.capText { font-size: 11px; color: var(--muted); line-height: 1.35; }
+.miniList { margin: 4px 0 0; padding-left: 14px; }
+
+/* Estilos Tech Stack */
+.techItem {
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.tiArea { font-size: 11px; font-weight: 800; color: var(--ink); margin-bottom: 6px; text-transform: uppercase; }
+.tiTools { display: flex; flex-wrap: wrap; gap: 4px; }
+.tiTag {
+  font-size: 10px;
+  background: rgba(123,97,255,0.08);
+  color: #5a4bce;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-weight: 600;
+}
+.almBox {
+  font-size: 10px;
+  background: #f0f2f5;
+  padding: 8px;
+  border-radius: 6px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* --- 3. FOOTER MODELO --- */
+.modelFooter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modelBox {
+  flex: 1;
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+}
+.modelBox.bad { background: rgba(255,0,0,0.04); border-color: rgba(255,0,0,0.1); }
+.modelBox.good { background: rgba(0,167,157,0.08); border-color: rgba(0,167,157,0.2); }
+
+.modelTitle { font-size: 12px; font-weight: 950; margin-bottom: 4px; }
+.bad .modelTitle { color: #d32f2f; }
+.good .modelTitle { color: var(--teal); }
+
+.modelText { font-size: 11px; color: var(--ink); line-height: 1.3; }
+
+.modelArrow {
+  font-size: 10px; font-weight: 900; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .deepDiveGrid { grid-template-columns: 1fr; }
+  .sequenceRail { display: none; } /* Ocultar secuencia en móvil, o adaptar */
+}
