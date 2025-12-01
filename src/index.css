@@ -1074,3 +1074,274 @@ body{
 .pillarBig{ min-height: 130px; padding: 12px 12px 10px; }
 .pillarList{ font-size: 12.5px; line-height: 1.4; }
 
+/* =========================================
+   NUEVO DIAGRAMA SECUENCIAL (Slide 1)
+   ========================================= */
+
+.seqWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+/* --- Parte Superior: Columnas --- */
+.seqContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas iguales */
+  gap: 12px;
+  position: relative;
+  padding: 10px 0;
+}
+
+.seqCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+/* La flecha flotante entre columnas */
+.seqArrow {
+  position: absolute;
+  right: -16px;
+  top: 40px;
+  color: var(--muted);
+  font-weight: 900;
+  font-size: 18px;
+  z-index: 2;
+  opacity: 0.4;
+}
+
+/* Header de la Fase */
+.seqHeader {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  position: relative;
+  overflow: hidden;
+  height: 110px; /* Altura fija para alineación */
+}
+
+/* Borde superior de color */
+.seqHeader::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+}
+.seq-teal::before { background: var(--teal); }
+.seq-blue::before { background: var(--blue); }
+.seq-purple::before { background: #7b61ff; }
+
+.seqNumber {
+  font-size: 10px;
+  font-weight: 900;
+  opacity: 0.4;
+  margin-bottom: 4px;
+}
+.seqTitle {
+  font-size: 14px;
+  font-weight: 950;
+  color: var(--ink);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.seqDesc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+/* Línea conectora vertical */
+.seqLine {
+  height: 12px;
+  width: 1px;
+  background: var(--line);
+  margin: 0 auto;
+}
+
+/* Bloques de Roles y Tech */
+.seqBlock {
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 80px;
+}
+
+.roleBlock {
+  background: rgba(0, 167, 157, 0.05);
+  border: 1px solid rgba(0, 167, 157, 0.1);
+}
+
+.techBlock {
+  background: rgba(0, 79, 159, 0.04);
+  border: 1px solid rgba(0, 79, 159, 0.1);
+  justify-content: flex-end; /* Tech abajo */
+}
+
+.seqLabel {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  opacity: 0.6;
+  letter-spacing: 0.05em;
+}
+
+.seqTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.seqTag {
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.seqTag.role {
+  background: #fff;
+  color: var(--teal);
+  border: 1px solid rgba(0,167,157,0.2);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.seqTag.tech {
+  background: #fff;
+  color: var(--blue);
+  border: 1px solid rgba(0,79,159,0.2);
+  font-family: monospace; /* Toque tech */
+  letter-spacing: -0.02em;
+}
+
+/* --- Parte Inferior: Tarjetas y Tabs --- */
+.seqDetailsSection {
+  background: rgba(255,255,255,0.6);
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detailTabs {
+  display: flex;
+  gap: 10px;
+}
+.tabBtn {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--muted);
+  cursor: pointer;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+}
+.tabBtn.active {
+  color: var(--ink);
+  border-bottom-color: var(--teal);
+}
+
+.cardsRail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+.railGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.railTitle {
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding-left: 2px;
+}
+
+.railRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.infoCard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.infoTitle {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.infoText {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Estilo específico para Roles (con icono) */
+.roleCardStyle {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.infoIcon { font-size: 16px; }
+
+/* Estilo específico para Tech */
+.techCardStyle {
+  border-left: 3px solid var(--blue);
+}
+.techCardHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.techIconBox {
+  color: var(--blue);
+  display: flex;
+}
+.techTagsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.miniTechTag {
+  font-size: 9px;
+  background: rgba(0,0,0,0.04);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 1000px) {
+  .seqContainer {
+    grid-template-columns: 1fr; /* Colapsar a vertical */
+  }
+  .seqArrow {
+    transform: rotate(90deg);
+    top: auto;
+    bottom: -20px;
+    right: 50%;
+  }
+}

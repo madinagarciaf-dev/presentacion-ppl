@@ -249,319 +249,208 @@ function BrandIcon() {
   );
 }
 
-/* --------------------------- SLIDE 1 --------------------------- */
+/* --------------------------- SLIDE 1: OFERTA (SECUENCIAL) --------------------------- */
 
 function SlideOferta({ detail, setDetail }) {
-  const pillars = [
+  // Datos maestros del proceso secuencial
+  const sequence = [
     {
-      title: "Propósito",
-      kicker: "Transformación continua: portfolio vivo de soluciones, no proyectos sueltos.",
-      bullets: [
-        "Backlog vivo, priorizado por impacto con CIO.",
-        "Cadencia de entregas + evolución constante.",
-        "Seguimiento compartido: avance, stoppers y decisiones.",
-      ],
-      chips: ["Transformación continua", "Prioridad CIO", "Transparencia"],
-      icon: <SvgTarget />,
+      id: 1,
+      phase: "Discovery",
+      desc: "Entender la necesidad real y el dolor del usuario.",
+      roles: ["Negocio", "Stakeholders"],
+      tech: ["Teams", "SharePoint", "Outlook"],
+      color: "teal"
     },
     {
-      title: "Personas",
-      kicker: "Convertimos conocimiento tácito en proceso digital gobernado (uso real, no PPTs).",
-      bullets: [
-        "Discovery con stakeholders y empatía con el proceso real.",
-        "Definición funcional clara + optimización cuando aplica.",
-        "Adopción por rol: formación, mensajes clave y soporte.",
-      ],
-      chips: ["Discovery", "Definición", "Adopción"],
-      icon: <SvgUsers />,
+      id: 2,
+      phase: "Definición",
+      desc: "Diseño funcional, modelo de datos y UX.",
+      roles: ["Arquitecto", "Negocio"],
+      tech: ["Dataverse", "Whiteboard", "Azure OpenAI"],
+      color: "teal"
     },
     {
-      title: "Plataforma",
-      kicker: "Microsoft (Power Platform + Azure + Datos + IA) aplicado con ALM y gobierno.",
-      bullets: [
-        "Datos y seguridad: modelo + roles/permisos (RLS).",
-        "Apps multicanal + agentes end-to-end.",
-        "Integración bidireccional (conectores y APIs).",
-      ],
-      chips: ["Dataverse", "Automate", "IA", "ALM"],
-      icon: <SvgPlatform />,
+      id: 3,
+      phase: "Prioridad",
+      desc: "Gestión de Backlog y aprobación de valor.",
+      roles: ["Product Owner", "CIO"],
+      tech: ["Azure DevOps", "Planner", "Power BI"],
+      color: "blue"
     },
+    {
+      id: 4,
+      phase: "Construcción",
+      desc: "Desarrollo de Apps, Agentes e Integraciones.",
+      roles: ["Desarrollador", "Arquitecto"],
+      tech: ["Power Apps", "Automate", "Azure Foundry", "AI Hub"],
+      color: "blue"
+    },
+    {
+      id: 5,
+      phase: "Evolución",
+      desc: "Adopción, gobierno y mejora continua.",
+      roles: ["Adopción", "Soporte"],
+      tech: ["Fabric", "Governance", "Viva"],
+      color: "purple"
+    }
   ];
 
-  const steps = [
-    { name: "Discovery", hint: "proceso real" },
-    { name: "Definición", hint: "requisitos" },
-    { name: "Prioridad", hint: "backlog" },
-    { name: "Construcción", hint: "sprints + ALM" },
-    { name: "Evolución", hint: "uso real" },
-  ];
-
-  const roleMini = [
-    {
-      name: "Negocio · Discovery & Prioridad",
-      badge: "1–3",
-      phases: [1,2,3],
-      do: ["Entrevistas clave", "Backlog y criterios de valor"],
-      know: ["Empatía + visión transversal", "Necesidad → requisito"],
-    },
-    {
-      name: "Arquitectura · Diseño & Viabilidad",
-      badge: "2–3",
-      phases: [2,3],
-      do: ["Patrón: core/módulo/satélite", "Modelo datos + roles/permisos"],
-      know: ["Escalabilidad sin redundancias", "Coste, riesgo y viabilidad"],
-    },
-    {
-      name: "Desarrollo · Construcción",
-      badge: "4",
-      phases: [4],
-      do: ["Apps + lógica + validaciones", "Agentes, integraciones y hardening"],
-      know: ["Buenas prácticas PP + técnica", "Gestión de stoppers"],
-    },
-    {
-      name: "Adopción & Gobierno · Continuidad",
-      badge: "5",
-      phases: [5],
-      do: ["Plan adopción + soporte inicial", "Gobierno (DLP/ALM) + KPIs uso"],
-      know: ["Gestión del cambio", "Sostenibilidad del portfolio"],
-    },
-  ];
-
-    const [activeStage, setActiveStage] = useState(0);
-
-  const platformCaps = [
-    { key: "data", label: "Datos & Seguridad" },
-    { key: "ux", label: "Apps & UX" },
-    { key: "flow", label: "Agentes (Automate)" },
-    { key: "int", label: "Integración & APIs" },
-    { key: "ai", label: "IA aplicada" },
-    { key: "alm", label: "ALM & Gobierno" },
-  ];
-
-  const stages = [
-    {
-      n: 1,
-      name: "Discovery",
-      hint: "proceso real",
-      text: "Entendemos el proceso end-to-end con stakeholders y detectamos oportunidades de digitalización.",
-      roleLead: "Negocio · Discovery & Prioridad",
-      caps: ["data", "ux"],
-      tags: ["Stakeholders", "Dolor", "Visión E2E"],
-    },
-    {
-      n: 2,
-      name: "Definición",
-      hint: "requisitos",
-      text: "Definimos requisitos + optimización del flujo, criterios de éxito y riesgos. Aquí nace el diseño.",
-      roleLead: "Arquitectura · Diseño & Viabilidad",
-      caps: ["data", "ux", "int"],
-      tags: ["Modelo datos", "Roles", "Diseño UX"],
-    },
-    {
-      n: 3,
-      name: "Prioridad",
-      hint: "backlog vivo",
-      text: "Gestionamos backlog vivo y priorizamos con CIO: valor/urgencia, dependencias y roadmap. Seguimiento compartido.",
-      roleLead: "Negocio · Discovery & Prioridad",
-      caps: ["alm", "data"],
-      tags: ["Priorización CIO", "Seguimiento", "Transparencia"],
-    },
-    {
-      n: 4,
-      name: "Construcción",
-      hint: "sprints + ALM",
-      text: "Construimos por sprints con calidad: apps, agentes, integraciones, hardening y despliegues seguros.",
-      roleLead: "Desarrollo · Construcción",
-      caps: ["ux", "flow", "int", "ai"],
-      tags: ["Entrega", "Calidad", "Integración"],
-    },
-    {
-      n: 5,
-      name: "Evolución",
-      hint: "adopción + gobierno",
-      text: "Aseguramos uso real: adopción por rol, gobernanza (DLP/ALM), KPIs y nuevas iteraciones del portfolio.",
-      roleLead: "Adopción & Gobierno · Continuidad",
-      caps: ["alm", "ai", "data"],
-      tags: ["Adopción", "Gobernanza", "Citizen Devs"],
-    },
-  ];
-
-  const active = stages[activeStage];
-  const capActive = new Set(active.caps);
-
-  const nodePos = (i) => {
-    // 5 puntos en círculo (empieza arriba)
-    const deg = -90 + i * 72;
-    const rad = (deg * Math.PI) / 180;
-    const r = 42; // radio en %
-    return {
-      top: `${50 + Math.sin(rad) * r}%`,
-      left: `${50 + Math.cos(rad) * r}%`,
-    };
+  // Datos detallados para las tarjetas inferiores
+  const details = {
+    phases: [
+      { t: "Discovery", d: "Detectamos procesos ocultos y conocimiento tácito mediante entrevistas." },
+      { t: "Definición", d: "Traducimos necesidades a requisitos técnicos, modelo de datos y seguridad." },
+      { t: "Construcción", d: "Iteraciones rápidas (Sprints) combinando Low-Code y Pro-Code." },
+      { t: "Adopción", d: "Gestión del cambio para asegurar que la herramienta se usa realmente." }
+    ],
+    roles: [
+      { t: "Negocio & PO", d: "Define el 'Qué' y prioriza por valor.", icon: "👔" },
+      { t: "Arquitecto", d: "Diseña el modelo de datos escalable y seguro.", icon: "📐" },
+      { t: "Maker/Dev", d: "Construye la solución (Power Platform + Azure).", icon: "💻" },
+      { t: "Gobierno", d: "Asegura cumplimiento, seguridad y ALM.", icon: "🛡️" }
+    ],
+    tech: [
+      { t: "Power Platform", d: "Apps, Automate, Dataverse para velocidad.", group: "Core" },
+      { t: "Azure & AI", d: "OpenAI, AI Hub, Foundry para inteligencia.", group: "Intelligence" },
+      { t: "M365 & Fabric", d: "Teams, SharePoint y Datos unificados.", group: "Collab" }
+    ]
   };
+
+  const [activeTab, setActiveTab] = useState("all"); // 'all', 'roles', 'tech'
 
   return (
     <SlideShell
-      badge="Lo que ofrecemos"
-      title="Transformación continua con Power Platform"
-      subtitle="Propósito · Personas · Plataforma: un modelo integrado para construir un portfolio vivo de soluciones digitales."
-      rightNote="Pulsa D para Detalle"
+      badge="Nuestro Modelo Operativo"
+      title="Transformación Digital End-to-End"
+      subtitle="Un flujo continuo donde Personas, Procesos y Plataforma trabajan al unísono."
+      rightNote="Ver detalle abajo"
       detail={detail}
       setDetail={setDetail}
     >
-      <div className="offerWrap">
-        {/* HERO */}
-        <div className="offerHero">
-          <div className="offerHeroLeft">
-            <div className="offerEyebrow">En 10 segundos</div>
-            <div className="offerHeadline">La transformación no es una entrega. Es un sistema operativo.</div>
-            <p className="offerSub">
-              Identificamos necesidades, las convertimos en definición clara, priorizamos con CIO y construimos
-              soluciones en producción con un ritmo continuo (y gobernado).
-            </p>
-          </div>
+      <div className="seqWrapper">
+        
+        {/* --- NIVEL SUPERIOR: DIAGRAMA SECUENCIAL --- */}
+        <div className="seqContainer">
+          {sequence.map((step, i) => (
+            <div className="seqCol" key={step.id}>
+              {/* Header Fase */}
+              <div className={`seqHeader seq-${step.color}`}>
+                <div className="seqNumber">0{step.id}</div>
+                <div className="seqTitle">{step.phase}</div>
+                <div className="seqDesc">{step.desc}</div>
+              </div>
 
-          <div className="offerHeroRight">
-            <div className="offerKpis">
-              <div className="kpiCard">
-                <div className="kpiLabel">Enfoque</div>
-                <div className="kpiValue">Impacto</div>
-                <div className="kpiHint">valor &gt; entregables</div>
-              </div>
-              <div className="kpiCard">
-                <div className="kpiLabel">Modelo</div>
-                <div className="kpiValue">Continuo</div>
-                <div className="kpiHint">no one-shot</div>
-              </div>
-              <div className="kpiCard">
-                <div className="kpiLabel">Cadencia</div>
-                <div className="kpiValue">Iterativa</div>
-                <div className="kpiHint">agile + transparencia</div>
-              </div>
-            </div>
-          </div>
-        </div>
+              {/* Conector Visual */}
+              <div className="seqLine" />
 
-        {/* 3 BLOQUES GIGANTES */}
-        <div className="offerPillars">
-          {pillars.map((p) => (
-            <div className="pillarBig" key={p.title}>
-              <div className="pillarBar" />
-              <div className="pillarHead">
-                <div className="pillarIcon">{p.icon}</div>
-                <div>
-                  <div className="pillarTitle">{p.title}</div>
-                  <div className="pillarKicker">{p.kicker}</div>
+              {/* Bloque Roles */}
+              <div className="seqBlock roleBlock">
+                <div className="seqLabel">Personas</div>
+                <div className="seqTags">
+                  {step.roles.map(r => <span key={r} className="seqTag role">{r}</span>)}
                 </div>
               </div>
 
-              <ul className="pillarList">
-                {cut(p.bullets, 2, detail).map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-
-              <div className="pillarChips">
-                {cut(p.chips, 3, detail).map((c) => (
-                  <span className="pill" key={c}>{c}</span>
-                ))}
+              {/* Bloque Plataforma */}
+              <div className="seqBlock techBlock">
+                <div className="seqLabel">Plataforma</div>
+                <div className="seqTags">
+                  {step.tech.map(t => <span key={t} className="seqTag tech">{t}</span>)}
+                </div>
               </div>
+              
+              {/* Flecha de flujo (excepto el último) */}
+              {i < sequence.length - 1 && <div className="seqArrow">→</div>}
             </div>
           ))}
         </div>
 
-        {/* ABAJO: PROCESO + ROLES (resumen) */}
-        <div className="offerBottom">
-          <div className="block">
-            <div className="blockTitle">Cómo operamos</div>
-            <div className="blockSub">Un proceso coherente: propósito → personas → plataforma, con backlog vivo y ritmo continuo.</div>
-
-            <div className="opsCard">
-              {/* CÍRCULO */}
-              <div className="ringWrap">
-                <div className="ringCircle" />
-                <div className="ringCenter">
-                  <div>
-                    <div className="ringCenterTitle">Backlog vivo</div>
-                    <div className="ringCenterSub">prioridad con CIO<br/>seguimiento compartido</div>
-                  </div>
-                </div>
-
-                {stages.map((s, i) => (
-                  <div className="stageNode" key={s.name} style={nodePos(i)} onClick={() => setActiveStage(i)}>
-                    <div className={"stageDot " + (activeStage === i ? "stageDotActive" : "")}>{s.n}</div>
-                    <div className="stageLabel">{s.name}<br/><span style={{opacity:.75}}>{s.hint}</span></div>
-                  </div>
-                ))}
-              </div>
-
-              {/* PANEL FASE */}
-              <div className="stagePanel">
-                <div className="stagePanelEyebrow">Fase {active.n} · {active.hint}</div>
-                <div className="stagePanelTitle">{active.name}</div>
-                <div className="stagePanelText">{active.text}</div>
-
-                <div className="stageRow">
-                  <span className="miniTag">Rol líder: {active.roleLead}</span>
-                  {active.tags.map(t => <span className="miniTag" key={t}>{t}</span>)}
-                </div>
-
-                <div className="platformRail" style={{marginTop: 10}}>
-                  {platformCaps.map((c) => (
-                    <span
-                      key={c.key}
-                      className={"platformChip " + (capActive.has(c.key) ? "platformChipActive" : "")}
-                    >
-                      {c.label}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+        {/* --- NIVEL INFERIOR: DETALLE EN TARJETAS --- */}
+        <div className="seqDetailsSection">
+          <div className="detailTabs">
+            <button className={`tabBtn ${activeTab==='all'?'active':''}`} onClick={()=>setActiveTab('all')}>Visión Completa</button>
+            <button className={`tabBtn ${activeTab==='tech'?'active':''}`} onClick={()=>setActiveTab('tech')}>Stack Tecnológico</button>
           </div>
 
+          <div className="cardsRail">
+            {/* Renderizado condicional basado en tabs o mostrar todo mezclado ordenadamente */}
+            
+            {/* FASES DETALLE */}
+            {(activeTab === 'all') && (
+               <div className="railGroup">
+                 <div className="railTitle">Profundidad del Proceso</div>
+                 <div className="railRow">
+                   {details.phases.map(p => (
+                     <div className="infoCard" key={p.t}>
+                       <div className="infoTitle">{p.t}</div>
+                       <div className="infoText">{p.d}</div>
+                     </div>
+                   ))}
+                 </div>
+               </div>
+            )}
 
-          <div className="block">
-            <div className="blockTitle">Roles (valor en cada fase)</div>
-            <div className="blockSub">4 perfiles que convierten necesidad en solución adoptada.</div>
+            {/* ROLES DETALLE */}
+            {(activeTab === 'all') && (
+               <div className="railGroup">
+                 <div className="railTitle">Roles Clave</div>
+                 <div className="railRow">
+                   {details.roles.map(r => (
+                     <div className="infoCard roleCardStyle" key={r.t}>
+                       <div className="infoIcon">{r.icon}</div>
+                       <div>
+                         <div className="infoTitle">{r.t}</div>
+                         <div className="infoText">{r.d}</div>
+                       </div>
+                     </div>
+                   ))}
+                 </div>
+               </div>
+            )}
 
-            <div className="roleMiniGrid">
-              {roleMini.map((r) => (
-                <div className={"roleMini " + (r.phases?.includes(active.n) ? "roleMiniActive" : "")} key={r.name}>
-                  <div className="roleMiniHead">
-                    <div className="roleMiniName">{r.name}</div>
-                    <div className="roleMiniBadge">Fase {r.badge}</div>
-                  </div>
-
-                  <div className="roleMiniBody">
-                    <div className="rolePane do">
-                      <div className="rolePaneTitle">Qué hace</div>
-                      <ul>
-                        {cut(r.do, 2, detail).map((x) => <li key={x}>{x}</li>)}
-                      </ul>
-                    </div>
-                    <div className="rolePane know">
-                      <div className="rolePaneTitle">Qué aporta</div>
-                      <ul>
-                        {cut(r.know, 2, detail).map((x) => <li key={x}>{x}</li>)}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {detail && (
-              <>
-                <hr className="hrSoft" />
-                {/* Aquí, en detalle, puedes volver a mostrar tus RoleCard grandes si quieres */}
-                {/* <div className="rolesGrid"> ... RoleCard ... </div> */}
-              </>
+            {/* TECH DETALLE */}
+            {(activeTab === 'all' || activeTab === 'tech') && (
+               <div className="railGroup">
+                 <div className="railTitle">Power Platform + Azure + M365</div>
+                 <div className="railRow">
+                   <TechCard 
+                      title="Power Platform" 
+                      items={["Power Apps", "Power Automate", "Dataverse", "Copilot Studio"]} 
+                      icon={<SvgPlatform />}
+                   />
+                   <TechCard 
+                      title="Azure & IA Avanzada" 
+                      items={["Azure OpenAI", "Azure Foundry", "AI Hub", "API Management"]} 
+                      icon={<SvgAi />}
+                   />
+                   <TechCard 
+                      title="Colaboración & Datos" 
+                      items={["Teams & SharePoint", "Microsoft Fabric", "Outlook", "OneDrive"]} 
+                      icon={<SvgDb />}
+                   />
+                 </div>
+               </div>
             )}
           </div>
         </div>
+
       </div>
     </SlideShell>
+  );
+}
+
+function TechCard({ title, items, icon }) {
+  return (
+    <div className="infoCard techCardStyle">
+      <div className="techCardHead">
+        <span className="techIconBox">{icon}</span>
+        <span className="infoTitle">{title}</span>
+      </div>
+      <div className="techTagsList">
+        {items.map(i => <span key={i} className="miniTechTag">{i}</span>)}
+      </div>
+    </div>
   );
 }
 
