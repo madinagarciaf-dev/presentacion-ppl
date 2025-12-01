@@ -339,7 +339,12 @@ function SlideOferta({ detail, setDetail }) {
             subtitle="Microsoft Cloud Stack"
             text="Un ecosistema unificado. Usamos Power Platform para velocidad (Low-Code), Azure para potencia (Pro-Code/IA) y Microsoft 365 para colaboración. Todo bajo un modelo de datos común (Dataverse) y seguridad empresarial."
           />
+          {/* --- ROLES --- */}
+          <RolesSection detail={detail} />
         </div>
+
+
+
 
         {/* --- 3. DIAGRAMA SECUENCIAL (Estilo Técnico) --- */}
         <div className="mermaidContainer">
@@ -391,6 +396,137 @@ function PillarBox({ title, subtitle, text }) {
     </div>
   );
 }
+
+function RolesSection({ detail }) {
+  return (
+    <Section
+      eyebrow="LOS ROLES"
+      title="Personas que hacen posible la transformación"
+    >
+      <div className="rolesGrid">
+
+        {/* --- TECH LEAD --- */}
+        <RoleCard
+          role="Tech Lead"
+          competencyTitle="Arquitectura · Negocio · Orquestación"
+          competencies={[
+            "Conecta negocio y tecnología",
+            "Define modelo de datos y permisos",
+            "Diseña la arquitectura funcional y técnica",
+            "Controla alcance, prioridades y backlog",
+            "Gobierna el ritmo del proyecto (rituales, demos, decisiones)",
+            "Asegura coherencia entre módulos y reutilización"
+          ]}
+          taskTitle="Tareas clave dentro del proceso"
+          tasks={[
+            "Discovery con stakeholders",
+            "Optimización del proceso",
+            "Diseño funcional (UX, roles, validaciones)",
+            "Modelo de datos + RLS",
+            "Priorización con CIO",
+            "Supervisión de calidad y evolución"
+          ]}
+          detail={detail}
+        />
+
+        {/* --- DEVELOPER (Power Platform + Azure) + IA DEVELOPER --- */}
+        <RoleCard
+          role="Developer + IA Developer"
+          competencyTitle="Construcción · Integraciones · IA aplicada"
+          competencies={[
+            "Construcción de apps (Power Apps) y flujos complejos (Power Automate)",
+            "Integración con sistemas (APIs, Azure Functions, APIM)",
+            "Modelo técnico: lógica, validaciones, seguridad y rendimiento",
+            "ALM: pipelines, entornos, variables, despliegues gobernados",
+            "Agentes inteligentes con Azure OpenAI y Power Automate",
+            "RAG: embeddings, vector DB, chunking e indexación",
+            "Copilots especializados (Copilot Studio + Azure Foundry)",
+            "Orquestación con LangChain / AI Hub",
+          ]}
+          taskTitle="Tareas clave dentro del proceso"
+          tasks={[
+            "Construcción iterativa por sprints",
+            "Implementación de integraciones (REST, SAP, Salesforce, etc.)",
+            "Creación de agentes autónomos (aprobaciones, validaciones, lógica)",
+            "Optimización de rendimiento y logs técnicos",
+            "Procesamiento de documentos/emails con IA",
+            "Soporte a QA y corrección técnica",
+            "Evolución del modelo técnico y del proceso"
+          ]}
+          detail={detail}
+        />
+
+        {/* --- QA / TESTER --- */}
+        <RoleCard
+          role="QA · Tester"
+          competencyTitle="Calidad funcional y técnica"
+          competencies={[
+            "Diseño de casos de prueba",
+            "Pruebas por rol y regresión",
+            "Validación funcional y técnica",
+            "Detección de escenarios límite y errores",
+            "Garantía de robustez y experiencia consistente"
+          ]}
+          taskTitle="Tareas clave dentro del proceso"
+          tasks={[
+            "Pruebas funcionales por módulo",
+            "Pruebas de regresión en cada sprint",
+            "Validación antes de despliegue (UAT)",
+            "Detección de incoherencias",
+            "Soporte en la estabilización post-producción"
+          ]}
+          detail={detail}
+        />
+
+        {/* --- ADOPCIÓN --- */}
+        <RoleCard
+          role="Adopción & Formación"
+          competencyTitle="Cambio organizacional y uso real"
+          competencies={[
+            "Diseño de materiales de adopción por rol",
+            "Sesiones formativas efectivas",
+            "Comunicación del cambio",
+            "Acompañamiento a usuarios clave",
+            "Detección de fricciones de uso"
+          ]}
+          taskTitle="Tareas clave dentro del proceso"
+          tasks={[
+            "Formación por rol",
+            "Acompañamiento inicial (primeras semanas)",
+            "Materiales (vídeos, guías, FAQs)",
+            "Gestionar feedback real y mejoras",
+            "Conectar casos de uso con negocio"
+          ]}
+          detail={detail}
+        />
+
+        {/* --- SOPORTE / EVOLUCIÓN --- */}
+        <RoleCard
+          role="Soporte & Evolución"
+          competencyTitle="Continuidad · Telemetría · Roadmap"
+          competencies={[
+            "Monitorización del uso",
+            "Resolución de bugs y fricciones",
+            "Mejoras incrementales",
+            "Lectura de telemetría y KPIs",
+            "Detección de nuevas oportunidades para el backlog"
+          ]}
+          taskTitle="Tareas clave dentro del proceso"
+          tasks={[
+            "Telemetría en producción",
+            "Corrección rápida de incidencias",
+            "Mejoras evolutivas",
+            "Propuestas basadas en datos",
+            "Alineamiento con Tech Lead para roadmap continuo"
+          ]}
+          detail={detail}
+        />
+
+      </div>
+    </Section>
+  );
+}
+
 
 // Sub-componente para detalles de rol
 function RoleDetailBox({ title, desc, items }) {

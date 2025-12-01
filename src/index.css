@@ -1788,3 +1788,9 @@ body{
   .mLifeline { left: 20px; width: 1px; top:0; bottom:0; }
   .mLifelineArea { align-items: flex-start; padding-left: 40px; }
 }
+.rolesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-top: 28px;
+}
