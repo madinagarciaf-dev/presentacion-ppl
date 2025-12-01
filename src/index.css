@@ -34,9 +34,10 @@ body{
 .appRoot{ min-height: 100vh; }
 .stage{ padding: 28px 18px 46px; display:flex; justify-content:center; }
 .deck{
-  width: min(1280px, 100%);
+  width: min(1680px, calc(100vw - 36px));
   position: relative;
 }
+
 .card{
   background: var(--card);
   border-radius: var(--r-lg);
@@ -1794,3 +1795,145 @@ body{
   gap: 32px;
   margin-top: 28px;
 }
+.moreHint, .capHint{ display:none !important; }
+.opOffer{
+  display:flex;
+  flex-direction:column;
+  gap: 14px;
+}
+
+/* ===== Roles legend (horizontal, 5 columnas) ===== */
+.rolesLegendRow{
+  display:grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 1400px){
+  .rolesLegendRow{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 980px){
+  .rolesLegendRow{ grid-template-columns: 1fr; }
+}
+
+.roleLegendCard{
+  position:relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: rgba(255,255,255,.94);
+  box-shadow: var(--shadow);
+  padding: 12px 12px 10px;
+  overflow:hidden;
+}
+
+.roleLegendCard::before{
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0;
+  height: 4px;
+  opacity: .95;
+}
+
+.roleLegendCard.tone-teal::before{ background: linear-gradient(90deg, rgba(0,167,157,1), rgba(0,167,157,.55)); }
+.roleLegendCard.tone-blue::before{ background: linear-gradient(90deg, rgba(0,79,159,1), rgba(0,79,159,.55)); }
+.roleLegendCard.tone-purple::before{ background: linear-gradient(90deg, rgba(123,97,255,1), rgba(123,97,255,.55)); }
+
+.roleLegendName{
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-size: 13.5px;
+}
+
+.roleLegendSub{
+  margin-top: 4px;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.25;
+}
+
+.roleLegendOne{
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: rgba(20,30,45,.78);
+  line-height: 1.35;
+}
+
+.roleLegendList{
+  margin: 8px 0 0 18px;
+  padding: 0;
+  font-size: 12.5px;
+  color: rgba(20,30,45,.78);
+  line-height: 1.35;
+}
+.roleLegendList li{ margin: 3px 0; }
+
+/* ===== Tech legend (stack) ===== */
+.techLegendGrid{
+  display:grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 1400px){
+  .techLegendGrid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 980px){
+  .techLegendGrid{ grid-template-columns: 1fr; }
+}
+
+.techLegendCard{
+  position:relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: rgba(255,255,255,.94);
+  box-shadow: var(--shadow);
+  padding: 12px 12px 12px;
+  overflow:hidden;
+}
+
+.techLegendCard::before{
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0;
+  height: 4px;
+  opacity: .95;
+}
+.techLegendCard.tone-teal::before{ background: linear-gradient(90deg, rgba(0,167,157,1), rgba(0,167,157,.55)); }
+.techLegendCard.tone-blue::before{ background: linear-gradient(90deg, rgba(0,79,159,1), rgba(0,79,159,.55)); }
+.techLegendCard.tone-purple::before{ background: linear-gradient(90deg, rgba(123,97,255,1), rgba(123,97,255,.55)); }
+
+.techLegendTitle{
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-size: 13.5px;
+}
+
+.techLegendSub{
+  margin-top: 4px;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.25;
+}
+
+.techLegendTags{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.techLegendTag{
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(20,30,45,.10);
+  background: rgba(255,255,255,.92);
+  color: rgba(20,30,45,.72);
+}
+
+

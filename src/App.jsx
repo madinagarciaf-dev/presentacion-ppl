@@ -252,63 +252,76 @@ function BrandIcon() {
 /* --------------------------- SLIDE 1: OFERTA (TECHNICAL APPROACH) --------------------------- */
 
 function SlideOferta({ detail, setDetail }) {
-  
-  // Datos para el diagrama secuencial
-  const sequence = [
+  const steps = [
     {
-      stage: "1. Discovery",
-      goal: "Entendimiento Profundo",
-      role: "Tech Lead",
-      action: "Consultoría de Procesos & Captura de Requisitos",
-      desc: "Intervención con stakeholders para aflorar el proceso oculto y definir el alcance real.",
-      tech: "M365 · Teams · Loop"
+      tone: "seq-teal",
+      number: "01",
+      title: "Discovery",
+      desc:
+        "Afloramos el proceso real (tácito), riesgos, stoppers y objetivo. Convertimos necesidad difusa en un alcance entendible.",
+      descShort:
+        "Proceso real, riesgos y objetivo. De necesidad difusa a alcance entendible.",
+      roles: ["Tech Lead"],
+      tech: ["M365 (Teams/SharePoint)", "Workshops", "Mapa de proceso"],
     },
     {
-      stage: "2. Definición",
-      goal: "Arquitectura Sólida",
-      role: "Tech Lead + Developer",
-      action: "Diseño Funcional & Modelo de Datos",
-      desc: "Traducción de necesidad a tablas (Dataverse), seguridad (Roles) y experiencia de usuario (UX).",
-      tech: "Dataverse · Whiteboard"
+      tone: "seq-blue",
+      number: "02",
+      title: "Definición",
+      desc:
+        "Diseño funcional y técnico: modelo de datos, permisos (RLS), pantallas por rol, integraciones y patrón de solución.",
+      descShort:
+        "Arquitectura: datos, permisos, UX por rol e integraciones.",
+      roles: ["Tech Lead", "Developer"],
+      tech: ["Dataverse", "Seguridad/RLS", "Integración M365", "Azure (APIs)"],
     },
     {
-      stage: "3. Construcción",
-      goal: "Desarrollo Ágil",
-      role: "Developer + Tester",
-      action: "Implementación Iterativa (Sprints)",
-      desc: "Desarrollo de Apps, Automatizaciones complejas, integración con Azure y validación técnica.",
-      tech: "Power Platform · Azure"
+      tone: "seq-purple",
+      number: "03",
+      title: "Construcción",
+      desc:
+        "Construcción iterativa por sprints: apps, automatizaciones, integraciones pro-code, agentes IA y validación de calidad.",
+      descShort:
+        "Sprints: apps, automatización, integraciones, agentes IA y calidad.",
+      roles: ["Developer", "QA"],
+      tech: ["Power Apps", "Power Automate", "Azure Functions", "Azure OpenAI/Foundry", "Dataverse"],
     },
     {
-      stage: "4. Adopción",
-      goal: "Uso Real",
-      role: "Adopción & Formación",
-      action: "Gestión del Cambio & Capacitación",
-      desc: "Sesiones por rol, creación de materiales y acompañamiento para vencer la resistencia.",
-      tech: "SharePoint · Stream"
+      tone: "seq-teal",
+      number: "04",
+      title: "Adopción",
+      desc:
+        "Activamos uso real: formación por rol, materiales, acompañamiento y ajuste fino para que la solución se quede.",
+      descShort:
+        "Formación por rol + acompañamiento para asegurar uso real.",
+      roles: ["Adopción", "Tech Lead"],
+      tech: ["Teams", "SharePoint", "Stream"],
     },
     {
-      stage: "5. Evolución",
-      goal: "Mejora Continua",
-      role: "Tech Lead + Soporte",
-      action: "Análisis de Telemetría & Roadmap",
-      desc: "Monitorización de uso, soporte correctivo y detección de nuevas oportunidades en el backlog.",
-      tech: "Fabric · App Insights"
-    }
+      tone: "seq-blue",
+      number: "05",
+      title: "Evolución",
+      desc:
+        "Transformación continua: telemetría, soporte, mejoras y roadmap vivo priorizado por valor (menos burocracia, más impacto).",
+      descShort:
+        "Telemetría + soporte + roadmap vivo priorizado por valor.",
+      roles: ["Soporte", "Tech Lead", "Developer"],
+      tech: ["Fabric", "App Insights", "Backlog"],
+    },
   ];
 
   return (
     <SlideShell
       badge="Technical Approach"
       title="Metodología de Transformación Digital"
-      subtitle="Estructura operativa para garantizar resultados predecibles y escalables."
+      subtitle="Método + Roles + Tecnología unidos en una secuencia de ejecución (orientado a valor y escalabilidad)."
       rightNote={detail ? "Modo Detalle: Activado" : "Resumen Ejecutivo"}
       detail={detail}
       setDetail={setDetail}
     >
-      <div className="techWrapper">
-        
-        {/* --- 1. MISIÓN --- */}
+      <div className="opOffer">
+
+        {/* 1) MISIÓN */}
         <div className="missionBar">
           <span className="missionLabel">NUESTRA MISIÓN:</span>
           <span className="missionText">
@@ -316,72 +329,235 @@ function SlideOferta({ detail, setDetail }) {
           </span>
         </div>
 
-        {/* --- 2. LOS TRES PILARES (Definiciones) --- */}
-        <div className="pillarsGrid">
-          <PillarBox 
-            title="A. EL MÉTODO"
-            subtitle="Iterativo & Incremental"
-            text="No hacemos 'proyectos cascada'. Trabajamos en ciclos de valor donde primero entendemos, luego diseñamos la arquitectura de datos y finalmente construimos de forma iterativa, asegurando que la tecnología se adapta al proceso real y no al revés."
-          />
-          <PillarBox 
-            title="B. LOS ROLES"
-            subtitle="Orquestación de Talentos"
-            text={
-              <ul className="cleanList">
-                <li><strong>Tech Lead:</strong> (Consultor/PM/Analista) La cara ante el cliente. Traduce negocio a técnico y controla el alcance.</li>
-                <li><strong>Developer/Tester:</strong> Expertos en la herramienta. Construyen lógica, integraciones y aseguran calidad (QA).</li>
-                <li><strong>Adopción:</strong> Garantiza que lo construido se usa. Formación y gestión humana del cambio.</li>
-              </ul>
-            }
-          />
-          <PillarBox 
-            title="C. LA TECNOLOGÍA"
-            subtitle="Microsoft Cloud Stack"
-            text="Un ecosistema unificado. Usamos Power Platform para velocidad (Low-Code), Azure para potencia (Pro-Code/IA) y Microsoft 365 para colaboración. Todo bajo un modelo de datos común (Dataverse) y seguridad empresarial."
-          />
-          {/* --- ROLES --- */}
-          <RolesSection detail={detail} />
-        </div>
-
-
-
-
-        {/* --- 3. DIAGRAMA SECUENCIAL (Estilo Técnico) --- */}
-        <div className="mermaidContainer">
-          <div className="mermaidLabel">SECUENCIA DE EJECUCIÓN</div>
-          <div className="mermaidFlow">
-            {sequence.map((step, i) => (
-              <div className="mColumn" key={i}>
-                {/* Header (Stage) */}
-                <div className="mHeader">
-                  <div className="mStageNum">0{i + 1}</div>
-                  <div className="mStageTitle">{step.stage}</div>
-                  <div className="mStageGoal">{step.goal}</div>
-                </div>
-
-                {/* Lifeline & Content */}
-                <div className="mLifelineArea">
-                  <div className="mLifeline"></div>
-                  
-                  {/* Role Action Box */}
-                  <div className={`mActionBox role-${step.role.split(' ')[0].toLowerCase()}`}>
-                    <div className="mRoleTag">{step.role}</div>
-                    <div className="mActionTitle">{step.action}</div>
-                    <div className="mActionDesc">{step.desc}</div>
-                  </div>
-
-                  {/* Tech Tag at bottom */}
-                  <div className="mTechTag">
-                    <span className="mTechLabel">STACK:</span> {step.tech}
-                  </div>
-                </div>
-              </div>
-            ))}
+        {/* 2) PROPUESTA (VALOR): DIAGRAMA SECUENCIAL */}
+        <div className="block">
+          <div className="blockTitle">Propuesta</div>
+          <div className="blockSub">
+            La secuencia que convierte necesidades en entregas reales en producción (sin dependencias de “proyectos one-shot”).
           </div>
+
+          <SeqDiagram steps={steps} detail={detail} />
         </div>
 
+        {/* 3) ROLES (LEYENDA) */}
+        <div className="block">
+          <div className="blockTitle">Roles (leyenda)</div>
+          <div className="blockSub">
+            Nombres consistentes con el diagrama. Un equipo coordinado donde método, roles y tecnología encajan.
+          </div>
+
+          <RolesLegend detail={detail} />
+        </div>
+
+        {/* 4) TECNOLOGÍA (STACK) */}
+        <div className="block">
+          <div className="blockTitle">Tecnología (stack)</div>
+          <div className="blockSub">
+            Power Platform para velocidad · Azure para potencia e IA · M365 para integración operativa · Fabric para datos y observabilidad.
+          </div>
+
+          <TechLegend detail={detail} />
+        </div>
       </div>
     </SlideShell>
+  );
+}
+
+/* =========================
+   BLOQUES (SlideOferta)
+   ========================= */
+
+function SeqDiagram({ steps, detail }) {
+  return (
+    <div className="seqWrapper">
+      <div className="seqContainer">
+        {steps.map((s, i) => (
+          <div className="seqCol" key={s.number}>
+            <div className={"seqHeader " + s.tone}>
+              <div className="seqNumber">{s.number}</div>
+              <div className="seqTitle">{s.title}</div>
+              <div className="seqDesc">{detail ? s.desc : s.descShort}</div>
+            </div>
+
+            <div className="seqLine" />
+
+            <div className="seqBlock roleBlock">
+              <div className="seqLabel">Roles</div>
+              <div className="seqTags">
+                {(detail ? s.roles : s.roles.slice(0, 2)).map((r) => (
+                  <span className="seqTag role" key={r}>
+                    {r}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="seqLine" />
+
+            <div className="seqBlock techBlock">
+              <div className="seqLabel">Stack</div>
+              <div className="seqTags">
+                {(detail ? s.tech : s.tech.slice(0, 3)).map((t) => (
+                  <span className="seqTag tech" key={t}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {i < steps.length - 1 ? <div className="seqArrow">→</div> : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function RolesLegend({ detail }) {
+  const roles = [
+    {
+      tone: "teal",
+      name: "Tech Lead",
+      sub: "Consultoría · Arquitectura · Backlog",
+      bullets: [
+        "Traduce negocio → solución",
+        "Define datos/seguridad/UX",
+        "Orquesta decisiones y alcance",
+      ],
+    },
+    {
+      tone: "blue",
+      name: "Developer",
+      sub: "Power Platform · Azure · IA aplicada",
+      bullets: [
+        "Apps + automatización + integraciones",
+        "Agentes IA (OpenAI/Foundry) + RAG",
+        "Calidad técnica y performance",
+      ],
+    },
+    {
+      tone: "purple",
+      name: "QA",
+      sub: "Pruebas · Regresión · Robustez",
+      bullets: [
+        "Casos de prueba multirol",
+        "Regresión por sprint",
+        "Validación antes de despliegue",
+      ],
+    },
+    {
+      tone: "teal",
+      name: "Adopción",
+      sub: "Formación · Cambio · Uso real",
+      bullets: [
+        "Formación por rol",
+        "Materiales y soporte inicial",
+        "Feedback operativo",
+      ],
+    },
+    {
+      tone: "blue",
+      name: "Soporte",
+      sub: "Telemetría · Incidencias · Evolución",
+      bullets: [
+        "Monitorización y KPIs",
+        "Corrección rápida",
+        "Roadmap continuo",
+      ],
+    },
+  ];
+
+  return (
+    <div className="rolesLegendRow">
+      {roles.map((r) => (
+        <RoleLegendCard
+          key={r.name}
+          tone={r.tone}
+          name={r.name}
+          sub={r.sub}
+          bullets={r.bullets}
+          detail={detail}
+        />
+      ))}
+    </div>
+  );
+}
+
+function RoleLegendCard({ tone, name, sub, bullets, detail }) {
+  return (
+    <div className={"roleLegendCard tone-" + tone}>
+      <div className="roleLegendName">{name}</div>
+      <div className="roleLegendSub">{sub}</div>
+      {detail ? (
+        <ul className="roleLegendList">
+          {bullets.slice(0, 3).map((b) => (
+            <li key={b}>{b}</li>
+          ))}
+        </ul>
+      ) : (
+        <div className="roleLegendOne">{bullets[0]}</div>
+      )}
+    </div>
+  );
+}
+
+function TechLegend({ detail }) {
+  const cards = [
+    {
+      tone: "teal",
+      title: "Power Platform",
+      subtitle: "Velocidad en procesos y UX",
+      tags: ["Power Apps", "Power Automate", "Dataverse", "Custom Connectors", "Copilot Studio"],
+    },
+    {
+      tone: "blue",
+      title: "Azure",
+      subtitle: "Integración y potencia (pro-code)",
+      tags: ["Functions", "API Management", "Automation", "Storage/Data Lake", "Key Vault"],
+    },
+    {
+      tone: "purple",
+      title: "IA",
+      subtitle: "Agentes, RAG y copilots",
+      tags: ["Azure OpenAI", "AI Hub", "Azure AI Foundry", "RAG", "LangChain/SK"],
+    },
+    {
+      tone: "blue",
+      title: "M365",
+      subtitle: "Integración operativa (expertise)",
+      tags: ["Teams", "SharePoint", "Outlook", "OneDrive", "Loop"],
+    },
+    {
+      tone: "teal",
+      title: "Datos (Fabric)",
+      subtitle: "Observabilidad y analítica",
+      tags: ["Pipelines", "Lakehouse", "Modelado", "KPIs", "Real-Time/Monitorización"],
+    },
+  ];
+
+  return (
+    <div className="techLegendGrid">
+      {cards.map((c) => (
+        <TechLegendCard key={c.title} {...c} detail={detail} />
+      ))}
+    </div>
+  );
+}
+
+function TechLegendCard({ tone, title, subtitle, tags, detail }) {
+  const shown = detail ? tags : tags.slice(0, 4);
+  return (
+    <div className={"techLegendCard tone-" + tone}>
+      <div className="techLegendTitle">{title}</div>
+      <div className="techLegendSub">{subtitle}</div>
+      <div className="techLegendTags">
+        {shown.map((t) => (
+          <span key={t} className="techLegendTag">
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 
