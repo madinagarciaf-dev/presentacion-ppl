@@ -375,58 +375,73 @@ function SlideOferta({ detail, setDetail }) {
 function SeqDiagram({ steps, detail }) {
   return (
     <div className="seqWrapper">
-      <div className="seqTopLabels" aria-hidden="true">
-        <span className="seqTopLabel">Roles</span>
-        <span className="seqTopLabel">Stack (solo en Definición y Construcción)</span>
-      </div>
+      <div
+        className="seqContainer"
+        style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${steps.length}, 1fr)`,
+          gridTemplateRows: "auto auto auto",
+          gap: "8px 12px",
+        }}
+      >
 
-      <div className="seqContainer">
+        {/* FILA 1 – Tarjetas de fases */}
         {steps.map((s, i) => (
-          <div className="seqCol" key={s.number}>
-            {/* Header de fase */}
+          <div key={s.number} className="seqCol" style={{ gridRow: 1, gridColumn: i + 1 }}>
             <div className={"seqHeader " + s.tone}>
               <div className="seqNumber">{s.number}</div>
               <div className="seqTitle">{s.title}</div>
               <div className="seqDesc">{detail ? s.desc : s.descShort}</div>
             </div>
-
-            <div className="seqLine" />
-
-            {/* FILA DE ROLES – SIN TARJETA, SOLO ETIQUETAS */}
-            <div className="seqRolesRow" aria-label="Roles">
-              <div className="seqTags">
-                {s.roles.map((r) => (
-                  <span className="seqTag role" key={r}>
-                    {r}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="seqLine" />
-
-            {/* FILA DE STACK – SOLO TARJETA EN DEFINICIÓN Y CONSTRUCCIÓN */}
-            {s.stack && s.stack.length ? (
-              <div className="seqBlock techBlock hasStack" aria-label="Stack tecnológico">
-                <div className="seqTags">
-                  {(detail ? s.stack : s.stack.slice(0, 2)).map((t) => (
-                    <span className="seqTag tech" key={t}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="seqEmptyCell" aria-hidden="true" />
-            )}
-
-            {i < steps.length - 1 ? <div className="seqArrow">→</div> : null}
           </div>
         ))}
+
+        {/* FILA 2 – ROLES (UNA FILA COMPLETA) */}
+        <div
+          className="seqRolesRow"
+          style={{
+            gridRow: 2,
+            gridColumn: `1 / span ${steps.length}`,
+            marginTop: "6px",
+            paddingBottom: "8px",
+          }}
+        >
+          <div className="seqLabelInside">ROLES</div>
+
+          <div className="seqRolesGrid">
+            {steps.map((s) => (
+              <div key={s.number} className="seqRoleCell">
+                {s.roles.map((r) => (
+                  <span key={r} className="seqTag role">{r}</span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FILA 3 – STACK AGRUPADO (sólo para Definición + Construcción) */}
+        <div
+          className="seqStackRow"
+          style={{
+            gridRow: 3,
+            gridColumn: "2 / span 2",
+            marginTop: "8px",
+          }}
+        >
+          <div className="seqLabelInside">STACK</div>
+          <div className="seqTags">
+            <span className="seqTag tech">Power Platform (Power Apps, Power Pages, Power Automate, Dataverse, AI HUB, Copilot Studio)</span>
+            <span className="seqTag tech">Azure (Azure Functions, Azure Automation, Azure AI Foundry)</span>
+            <span className="seqTag tech">Microsoft 365 (Teams, SharePoint, Outlook)</span>
+            <span className="seqTag tech">Integraciones externas (SAP, Salesforce, Oracle, APIs REST)</span>
+          </div>
+        </div>
+
       </div>
     </div>
   );
 }
+
 
 
 
