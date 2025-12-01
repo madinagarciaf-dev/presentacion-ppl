@@ -1967,4 +1967,25 @@ body{
   line-height: 1.35;
 }
 
+/* Fila de roles: sin tarjeta, solo las etiquetas */
+.seqRolesRow{
+  min-height: 80px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4px 2px;
+  background: transparent;
+  border: none;
+}
+
+/* Evitamos que roleBlock pinte fondo si se sigue usando en algún sitio */
+.roleBlock{
+  background: transparent !important;
+  border: none !important;
+}
+
+.seqEmptyCell{
+  min-height: 80px;
+}
+
 

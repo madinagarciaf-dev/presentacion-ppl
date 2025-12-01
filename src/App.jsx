@@ -271,7 +271,12 @@ function SlideOferta({ detail, setDetail }) {
         "Diseño funcional y técnico: modelo de datos, permisos (RLS), pantallas por rol, integraciones y patrón de solución.",
       descShort: "Arquitectura: datos, permisos, UX por rol e integraciones.",
       roles: ["Tech Lead", "Developer"],
-      stack: [], // <- vacío a propósito
+      stack: [
+        "Power Platform (Power Apps, Power Pages, Power Automate, Dataverse, AI HUB, Copilot Studio)",
+        "Azure (Azure Functions, Azure Automation, Azure AI Foundry)",
+        "Microsoft 365 (Teams, SharePoint, Outlook)",
+        "Integraciones (sistemas de información fuera de Microsoft)",
+      ],
     },
     {
       tone: "seq-purple",
@@ -285,7 +290,7 @@ function SlideOferta({ detail, setDetail }) {
         "Power Platform (Power Apps, Power Pages, Power Automate, Dataverse, AI HUB, Copilot Studio)",
         "Azure (Azure Functions, Azure Automation, Azure AI Foundry)",
         "Microsoft 365 (Teams, SharePoint, Outlook)",
-        "Fabric",
+        "Integraciones (sistemas de información fuera de Microsoft)",
       ],
     },
     {
@@ -372,12 +377,13 @@ function SeqDiagram({ steps, detail }) {
     <div className="seqWrapper">
       <div className="seqTopLabels" aria-hidden="true">
         <span className="seqTopLabel">Roles</span>
-        <span className="seqTopLabel">Stack (solo en Construcción)</span>
+        <span className="seqTopLabel">Stack (solo en Definición y Construcción)</span>
       </div>
 
       <div className="seqContainer">
         {steps.map((s, i) => (
           <div className="seqCol" key={s.number}>
+            {/* Header de fase */}
             <div className={"seqHeader " + s.tone}>
               <div className="seqNumber">{s.number}</div>
               <div className="seqTitle">{s.title}</div>
@@ -386,7 +392,8 @@ function SeqDiagram({ steps, detail }) {
 
             <div className="seqLine" />
 
-            <div className="seqBlock roleBlock" aria-label="Roles">
+            {/* FILA DE ROLES – SIN TARJETA, SOLO ETIQUETAS */}
+            <div className="seqRolesRow" aria-label="Roles">
               <div className="seqTags">
                 {s.roles.map((r) => (
                   <span className="seqTag role" key={r}>
@@ -398,8 +405,9 @@ function SeqDiagram({ steps, detail }) {
 
             <div className="seqLine" />
 
-            <div className="seqBlock techBlock" aria-label="Stack tecnológico">
-              {s.stack?.length ? (
+            {/* FILA DE STACK – SOLO TARJETA EN DEFINICIÓN Y CONSTRUCCIÓN */}
+            {s.stack && s.stack.length ? (
+              <div className="seqBlock techBlock hasStack" aria-label="Stack tecnológico">
                 <div className="seqTags">
                   {(detail ? s.stack : s.stack.slice(0, 2)).map((t) => (
                     <span className="seqTag tech" key={t}>
@@ -407,10 +415,10 @@ function SeqDiagram({ steps, detail }) {
                     </span>
                   ))}
                 </div>
-              ) : (
-                <div className="seqEmpty">—</div>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="seqEmptyCell" aria-hidden="true" />
+            )}
 
             {i < steps.length - 1 ? <div className="seqArrow">→</div> : null}
           </div>
@@ -419,6 +427,7 @@ function SeqDiagram({ steps, detail }) {
     </div>
   );
 }
+
 
 
 function RolesLegend({ detail }) {
