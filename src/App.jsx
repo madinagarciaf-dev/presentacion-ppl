@@ -249,192 +249,146 @@ function BrandIcon() {
   );
 }
 
-/* --------------------------- SLIDE 1: OFERTA (SECUENCIAL) --------------------------- */
-
-/* --------------------------- SLIDE 1: OFERTA (MEGA DETALLE) --------------------------- */
+/* --------------------------- SLIDE 1: OFERTA (TECHNICAL APPROACH) --------------------------- */
 
 function SlideOferta({ detail, setDetail }) {
   
-  // Fases del Proceso (Secuencial)
-  const phases = [
-    { id: 1, title: "Consultoría & Análisis", sub: "Entender vs. Pedir", icon: "🧠" },
-    { id: 2, title: "Arquitectura & Diseño", sub: "Datos + Seguridad", icon: "📐" },
-    { id: 3, title: "Desarrollo Iterativo", sub: "Sprints + Calidad", icon: "⚙️" },
-    { id: 4, title: "Adopción & Formación", sub: "Gestión del Cambio", icon: "🚀" },
-    { id: 5, title: "Evolución Continua", sub: "Mejora constante", icon: "📈" },
+  // Datos para el diagrama secuencial
+  const sequence = [
+    {
+      stage: "1. Discovery",
+      goal: "Entendimiento Profundo",
+      role: "Tech Lead",
+      action: "Consultoría de Procesos & Captura de Requisitos",
+      desc: "Intervención con stakeholders para aflorar el proceso oculto y definir el alcance real.",
+      tech: "M365 · Teams · Loop"
+    },
+    {
+      stage: "2. Definición",
+      goal: "Arquitectura Sólida",
+      role: "Tech Lead + Developer",
+      action: "Diseño Funcional & Modelo de Datos",
+      desc: "Traducción de necesidad a tablas (Dataverse), seguridad (Roles) y experiencia de usuario (UX).",
+      tech: "Dataverse · Whiteboard"
+    },
+    {
+      stage: "3. Construcción",
+      goal: "Desarrollo Ágil",
+      role: "Developer + Tester",
+      action: "Implementación Iterativa (Sprints)",
+      desc: "Desarrollo de Apps, Automatizaciones complejas, integración con Azure y validación técnica.",
+      tech: "Power Platform · Azure"
+    },
+    {
+      stage: "4. Adopción",
+      goal: "Uso Real",
+      role: "Adopción & Formación",
+      action: "Gestión del Cambio & Capacitación",
+      desc: "Sesiones por rol, creación de materiales y acompañamiento para vencer la resistencia.",
+      tech: "SharePoint · Stream"
+    },
+    {
+      stage: "5. Evolución",
+      goal: "Mejora Continua",
+      role: "Tech Lead + Soporte",
+      action: "Análisis de Telemetría & Roadmap",
+      desc: "Monitorización de uso, soporte correctivo y detección de nuevas oportunidades en el backlog.",
+      tech: "Fabric · App Insights"
+    }
   ];
 
   return (
     <SlideShell
-      badge="Manifiesto Operativo"
-      title="Propuesta de Valor Real: Personas + Tecnología"
-      subtitle="La tecnología es el vehículo, pero el valor lo crea un equipo que sabe analizar, modelar y operacionalizar procesos."
-      rightNote="Vista Detallada Activa"
+      badge="Technical Approach"
+      title="Metodología de Transformación Digital"
+      subtitle="Estructura operativa para garantizar resultados predecibles y escalables."
+      rightNote={detail ? "Modo Detalle: Activado" : "Resumen Ejecutivo"}
       detail={detail}
       setDetail={setDetail}
     >
-      <div className="megaWrapper">
+      <div className="techWrapper">
         
-        {/* --- 1. DIAGRAMA SECUENCIAL (El Flujo) --- */}
-        <div className="sequenceRail">
-          {phases.map((p, i) => (
-            <div className="seqNode" key={p.id}>
-              <div className="seqNodeHeader">
-                <span className="seqIcon">{p.icon}</span>
-                <span className="seqIndex">0{p.id}</span>
-              </div>
-              <div className="seqTitle">{p.title}</div>
-              <div className="seqSub">{p.sub}</div>
-              {i < phases.length - 1 && <div className="seqConnect"></div>}
-            </div>
-          ))}
+        {/* --- 1. MISIÓN --- */}
+        <div className="missionBar">
+          <span className="missionLabel">NUESTRA MISIÓN:</span>
+          <span className="missionText">
+            Operacionalizar el conocimiento de negocio mediante tecnología escalable, transformando procesos manuales en activos digitales gobernados.
+          </span>
         </div>
 
-        {/* --- 2. EL MOTOR (3 COLUMNAS DENSAS) --- */}
-        <div className="deepDiveGrid">
-          
-          {/* COLUMNA 1: ROLES (PERSONAS) */}
-          <div className="deepCol">
-            <div className="deepHeader col-teal">
-              <div className="deepIcon">👥</div>
-              <div>
-                <div className="deepTitle">El Equipo (Roles)</div>
-                <div className="deepSub">Orquestación de perfiles clave</div>
-              </div>
-            </div>
-            <div className="deepContent">
-              <RoleDetailBox 
-                title="Negocio & Consultoría"
-                desc="Convierten un 'quiero un Excel' en un modelo real."
-                items={[
-                  "Analizan procesos y detectan riesgos.",
-                  "Priorizan casos de uso por valor.",
-                  "Ordenan y guían al cliente (consultoría)."
-                ]}
-              />
-              <RoleDetailBox 
-                title="Arquitectos Técnicos"
-                desc="Estructura, seguridad y coherencia."
-                items={[
-                  "Definen modelo de datos y relaciones.",
-                  "Evalúan integración (SAP, Salesforce).",
-                  "Aseguran escalabilidad y permisos."
-                ]}
-              />
-              <RoleDetailBox 
-                title="Desarrolladores (Makers + Pro)"
-                desc="Calidad, código eficiente y lógica."
-                items={[
-                  "Lógica compleja, Power FX optimizado.",
-                  "Integraciones via APIs y Azure Functions.",
-                  "Gestión de errores y logs."
-                ]}
-              />
-               <RoleDetailBox 
-                title="Expertos en Adopción"
-                desc="Para que la solución no muera."
-                items={[
-                  "Formaciones por rol y mensajes clave.",
-                  "Acompañamiento post-go-live.",
-                  "Garantía de uso real."
-                ]}
-              />
-            </div>
-          </div>
-
-          {/* COLUMNA 2: CAPACIDADES (QUÉ HACEMOS) */}
-          <div className="deepCol">
-            <div className="deepHeader col-blue">
-              <div className="deepIcon">🏭</div>
-              <div>
-                <div className="deepTitle">Lo que construimos</div>
-                <div className="deepSub">Módulos digitales alrededor del ERP</div>
-              </div>
-            </div>
-            <div className="deepContent">
-              <div className="capBox">
-                <div className="capTitle">1. Ecosistema Integrado</div>
-                <div className="capText">
-                  No somos una isla. Nos unimos a <strong>SAP, Salesforce, Dynamics, Oracle</strong> mediante conectores estándar o Custom Connectors (APIs).
-                </div>
-              </div>
-              <div className="capBox">
-                <div className="capTitle">2. Capa de Datos (Dataverse)</div>
-                <div className="capText">
-                  Creamos nuevas tablas, relaciones complejas y seguridad nivel registro (RLS) que el ERP no permite o encarece.
-                </div>
-              </div>
-              <div className="capBox">
-                <div className="capTitle">3. Lógica de Negocio</div>
-                <div className="capText">
-                  Apps (Canvas/Model) con validaciones, navegación guiada, notificaciones y experiencia móvil/escritorio fluida.
-                </div>
-              </div>
-              <div className="capBox">
-                <div className="capTitle">4. Agentes & Automatización</div>
-                <div className="capText">
-                  <ul className="miniList">
-                    <li>Gestión de aprobaciones complejas.</li>
-                    <li>Generación de documentos (PDF, Excel).</li>
-                    <li>Movimiento de datos entre sistemas.</li>
-                    <li>Orquestación con IA (clasificación, análisis).</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* COLUMNA 3: PLATAFORMA (TECNOLOGÍA) */}
-          <div className="deepCol">
-            <div className="deepHeader col-purple">
-              <div className="deepIcon">💻</div>
-              <div>
-                <div className="deepTitle">Plataforma Tecnológica</div>
-                <div className="deepSub">Microsoft Cloud Stack</div>
-              </div>
-            </div>
-            <div className="deepContent">
-              <TechStackItem 
-                area="Power Platform (Core)"
-                tools={["Power Apps", "Power Automate", "Dataverse", "Copilot Studio", "Power Pages"]}
-              />
-              <TechStackItem 
-                area="Azure (Pro-Code & IA)"
-                tools={["Azure Functions", "API Management", "Azure OpenAI", "Azure SQL", "Logic Apps"]}
-              />
-              <TechStackItem 
-                area="Datos & Analytics"
-                tools={["Microsoft Fabric", "Power BI", "Data Lake", "Purview"]}
-              />
-              <TechStackItem 
-                area="Colaboración (M365)"
-                tools={["Microsoft Teams", "SharePoint Online", "Outlook", "OneDrive"]}
-              />
-              <div className="almBox">
-                <strong>Fundamento ALM:</strong> Entornos, Pipelines, Variables, Soluciones gestionadas y Seguridad controlada.
-              </div>
-            </div>
-          </div>
-
+        {/* --- 2. LOS TRES PILARES (Definiciones) --- */}
+        <div className="pillarsGrid">
+          <PillarBox 
+            title="A. EL MÉTODO"
+            subtitle="Iterativo & Incremental"
+            text="No hacemos 'proyectos cascada'. Trabajamos en ciclos de valor donde primero entendemos, luego diseñamos la arquitectura de datos y finalmente construimos de forma iterativa, asegurando que la tecnología se adapta al proceso real y no al revés."
+          />
+          <PillarBox 
+            title="B. LOS ROLES"
+            subtitle="Orquestación de Talentos"
+            text={
+              <ul className="cleanList">
+                <li><strong>Tech Lead:</strong> (Consultor/PM/Analista) La cara ante el cliente. Traduce negocio a técnico y controla el alcance.</li>
+                <li><strong>Developer/Tester:</strong> Expertos en la herramienta. Construyen lógica, integraciones y aseguran calidad (QA).</li>
+                <li><strong>Adopción:</strong> Garantiza que lo construido se usa. Formación y gestión humana del cambio.</li>
+              </ul>
+            }
+          />
+          <PillarBox 
+            title="C. LA TECNOLOGÍA"
+            subtitle="Microsoft Cloud Stack"
+            text="Un ecosistema unificado. Usamos Power Platform para velocidad (Low-Code), Azure para potencia (Pro-Code/IA) y Microsoft 365 para colaboración. Todo bajo un modelo de datos común (Dataverse) y seguridad empresarial."
+          />
         </div>
 
-        {/* --- 3. MODELO DE RELACIÓN (FOOTER) --- */}
-        <div className="modelFooter">
-          <div className="modelBox bad">
-            <div className="modelTitle">❌ Proveedor de "One-Shot"</div>
-            <div className="modelText">Proyectos rígidos, tensión por el alcance, presupuesto cerrado que bloquea cambios. Se entrega y se olvida.</div>
-          </div>
-          <div className="modelArrow">TRANSICIÓN A</div>
-          <div className="modelBox good">
-            <div className="modelTitle">✅ Partner de Transformación Continua</div>
-            <div className="modelText">
-              Equipo estable (Funcional + Dev + Adopción). Backlog vivo priorizado por valor. Se paga por <strong>capacidad</strong>, se entrega <strong>impacto</strong> constante.
-            </div>
+        {/* --- 3. DIAGRAMA SECUENCIAL (Estilo Técnico) --- */}
+        <div className="mermaidContainer">
+          <div className="mermaidLabel">SECUENCIA DE EJECUCIÓN</div>
+          <div className="mermaidFlow">
+            {sequence.map((step, i) => (
+              <div className="mColumn" key={i}>
+                {/* Header (Stage) */}
+                <div className="mHeader">
+                  <div className="mStageNum">0{i + 1}</div>
+                  <div className="mStageTitle">{step.stage}</div>
+                  <div className="mStageGoal">{step.goal}</div>
+                </div>
+
+                {/* Lifeline & Content */}
+                <div className="mLifelineArea">
+                  <div className="mLifeline"></div>
+                  
+                  {/* Role Action Box */}
+                  <div className={`mActionBox role-${step.role.split(' ')[0].toLowerCase()}`}>
+                    <div className="mRoleTag">{step.role}</div>
+                    <div className="mActionTitle">{step.action}</div>
+                    <div className="mActionDesc">{step.desc}</div>
+                  </div>
+
+                  {/* Tech Tag at bottom */}
+                  <div className="mTechTag">
+                    <span className="mTechLabel">STACK:</span> {step.tech}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
       </div>
     </SlideShell>
+  );
+}
+
+function PillarBox({ title, subtitle, text }) {
+  return (
+    <div className="pillarDef">
+      <div className="pillarHead">
+        <span className="pillarTitle">{title}</span>
+        <span className="pillarSub">{subtitle}</span>
+      </div>
+      <div className="pillarBody">{text}</div>
+    </div>
   );
 }
 

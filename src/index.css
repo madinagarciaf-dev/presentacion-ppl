@@ -1535,3 +1535,256 @@ body{
   .deepDiveGrid { grid-template-columns: 1fr; }
   .sequenceRail { display: none; } /* Ocultar secuencia en móvil, o adaptar */
 }
+/* =========================================
+   ESTILO TÉCNICO / BLUEPRINT (Slide 1)
+   ========================================= */
+
+.techWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* --- 1. Misión --- */
+.missionBar {
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.missionLabel {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  white-space: nowrap;
+}
+
+.missionText {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  opacity: 0.95;
+}
+
+/* --- 2. Pilar Definitions (3 Grid) --- */
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.pillarDef {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--ink); /* Acento visual */
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pillarHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding-bottom: 6px;
+}
+
+.pillarTitle {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.pillarSub {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pillarBody {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+.cleanList {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.cleanList li {
+  margin-bottom: 4px;
+  padding-left: 8px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+.cleanList strong {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* --- 3. Diagrama Secuencial Estilo Mermaid --- */
+.mermaidContainer {
+  flex: 1;
+  background: #f8f9fa; /* Fondo técnico muy suave */
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.mermaidLabel {
+  font-size: 10px;
+  font-weight: 900;
+  color: var(--muted);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.mermaidFlow {
+  display: flex;
+  height: 100%;
+  gap: 0; /* Sin gap, las columnas se tocan o se separan con border */
+}
+
+.mColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* Separador vertical sutil entre fases */
+  border-right: 1px dashed rgba(0,0,0,0.06);
+}
+.mColumn:last-child { border-right: none; }
+
+/* Header de la Fase */
+.mHeader {
+  text-align: center;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+  z-index: 2;
+}
+.mStageNum {
+  font-size: 10px;
+  font-weight: 900;
+  color: var(--teal);
+  margin-bottom: 2px;
+}
+.mStageTitle {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+.mStageGoal {
+  font-size: 10px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Area de la Linea de Vida */
+.mLifelineArea {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Distribuye espacio: caja arriba, tech abajo */
+  padding: 10px 6px;
+}
+
+/* La linea vertical */
+.mLifeline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--line);
+  z-index: 0;
+}
+
+/* Caja de Acción (El nodo del diagrama) */
+.mActionBox {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 8px 10px;
+  width: 95%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+  text-align: left;
+  margin-top: 10px; /* Separación del header */
+}
+
+/* Colores de borde según Rol para identificar visualmente rápido */
+.role-tech { border-left: 3px solid var(--teal); } /* Tech Lead */
+.role-developer { border-left: 3px solid var(--blue); } /* Dev */
+.role-adopción { border-left: 3px solid #e91e63; } /* Adopción */
+
+.mRoleTag {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+  display: block;
+}
+.mActionTitle {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.mActionDesc {
+  font-size: 10px;
+  color: rgba(0,0,0,0.6);
+  line-height: 1.35;
+}
+
+/* Etiqueta de Tecnología (Bottom) */
+.mTechTag {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 4px 8px;
+  border-radius: 99px;
+  font-size: 9px;
+  color: var(--ink);
+  font-family: 'Consolas', monospace; /* Toque "code" */
+  margin-top: auto; /* Empuja hacia abajo */
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mTechLabel {
+  font-weight: 800;
+  color: var(--blue);
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .mermaidFlow { flex-direction: column; }
+  .mColumn { border-right: none; border-bottom: 1px dashed var(--line); padding-bottom: 12px; }
+  .mLifeline { left: 20px; width: 1px; top:0; bottom:0; }
+  .mLifelineArea { align-items: flex-start; padding-left: 40px; }
+}
