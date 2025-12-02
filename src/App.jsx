@@ -488,6 +488,7 @@ function RolesLegend({ detail }) {
   const roles = [
     {
       name: "Tech Lead",
+      tone: "teal",
       badge: "Arquitecto / Consultor / PM",
       headline: "Liderazgo técnico y funcional del proyecto",
       do: [
@@ -505,6 +506,7 @@ function RolesLegend({ detail }) {
     },
     {
       name: "Developer",
+      tone: "teal",
       badge: "Developer Power Platform · IA · Data",
       headline: "Construcción de aplicaciones, automatizaciones y agentes",
       do: [
@@ -522,6 +524,7 @@ function RolesLegend({ detail }) {
     },
     {
       name: "QA / Tester",
+      tone: "teal",
       badge: "Testing funcional y técnico",
       headline: "Garantiza calidad, fiabilidad y seguridad",
       do: [
@@ -539,6 +542,7 @@ function RolesLegend({ detail }) {
     },
     {
       name: "Adopción",
+      tone: "teal",
       badge: "Consultor · Formador",
       headline: "Que la solución se use, escale y quede implantada",
       do: [
@@ -556,6 +560,7 @@ function RolesLegend({ detail }) {
     },
     {
       name: "Soporte",
+      tone: "teal",
       badge: "Developer Power Platform · IA · Data",
       headline: "Mantenimiento evolutivo y resolución rápida",
       do: [
