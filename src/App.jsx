@@ -1055,161 +1055,163 @@ function TechCard({ title, items, icon }) {
 
 
 
-/* --------------------------- SLIDE 2 --------------------------- */
+/* --------------------------- SLIDE 2 (REWORK SECUENCIAL) --------------------------- */
 
-function SlideCasoTransformacion({ detail, setDetail }) {
-  const process = [
+function SlideCasoTransformacion({ detail }) {
+
+  const steps = [
     {
+      tone: "seq-teal",
+      number: "01",
       title: "Discovery",
-      textShort: "Captura de necesidades con stakeholders y proceso real (tácito).",
-      text:
-        "Necesidades captadas con stakeholders, empatía y entendimiento del proceso real. " +
-        "Se documenta el “cómo se hace” para que deje de vivir solo en personas clave.",
-      tags: ["Negocio", "Stakeholders", "Proceso"],
+      desc:
+        "Captura profunda del proceso real (tácito), detección de riesgos y stoppers y definición del objetivo. Convertimos una necesidad difusa en algo accionable y entendible por negocio y tecnología.",
+      roles: ["Tech Lead"],
+      stack: ["Stakeholders", "Proceso real", "Documentación base"]
     },
     {
+      tone: "seq-blue",
+      number: "02",
       title: "Definición + Optimización",
-      textShort: "Requisitos claros + optimización del flujo + patrón de solución elegido.",
-      text:
-        "Requerimientos claros, optimización del flujo si aplica, definición funcional y técnica; " +
-        "decisión del patrón (core / módulo / satélite) y estimación de costes.",
-      tags: ["Arquitectura", "Viabilidad", "Coste"],
+      desc:
+        "Definición funcional y técnica, optimización del flujo, modelo de datos, permisos, pantallas por rol, integraciones y elección del patrón de solución (módulo, núcleo o aislado). Estimación completa.",
+      roles: ["Tech Lead", "Developer"],
+      stack: ["Modelo de datos", "Permisos (RLS)", "Integraciones", "UX por rol"]
     },
     {
-      title: "Priorización y Backlog",
-      textShort: "Backlog vivo priorizado con CIO + transparencia de avance/stoppers.",
-      text:
-        "Backlog vivo priorizado con CIO: valor, urgencia, dependencias y capacidad. " +
-        "Transparencia de avance, stoppers y decisiones (reporting adaptado al decisor).",
-      tags: ["CIO", "Backlog", "Transparencia"],
+      tone: "seq-purple",
+      number: "03",
+      title: "Priorización + Backlog",
+      desc:
+        "Creamos un backlog único priorizado por el CIO según valor, urgencia y dependencias. Avance completamente transparente: decisiones, stoppers y reporting adaptado.",
+      roles: ["Tech Lead"],
+      stack: ["CIO", "Valor", "Urgencia", "Capacidad", "Dependencias"]
     },
     {
+      tone: "seq-teal",
+      number: "04",
       title: "Construcción iterativa",
-      textShort: "Sprints, demos, calidad y despliegues gobernados (ALM).",
-      text:
-        "Sprints, demos recurrentes, control de calidad, y despliegues gobernados (ALM). " +
-        "Se evoluciona lo ya desplegado mientras se entrega nuevo valor.",
-      tags: ["Agile", "ALM", "Entrega"],
+      desc:
+        "Sprints cortos, demos recurrentes, control de calidad (QA), despliegues gobernados (ALM) y evolución continua de lo ya desplegado.",
+      roles: ["Developer", "QA"],
+      stack: ["Power Platform", "Integraciones", "ALM", "Calidad"]
     },
     {
-      title: "Adopción y Evolución",
-      textShort: "Formación por rol + monitorización + nuevas oportunidades al backlog.",
-      text:
-        "Formación por rol, acompañamiento y monitorización del uso. " +
-        "Se detectan nuevas oportunidades y se retroalimenta el backlog: transformación continua.",
-      tags: ["Adopción", "KPIs", "Evolución"],
-    },
+      tone: "seq-blue",
+      number: "05",
+      title: "Adopción y evolución continua",
+      desc:
+        "Formación por rol, acompañamiento y monitorización del uso. Telemetría, soporte, mejoras y nuevas oportunidades para el backlog. El flujo nunca se detiene.",
+      roles: ["Adopción", "Soporte", "Tech Lead"],
+      stack: ["Formación", "Telemetría", "KPIs", "Roadmap vivo"]
+    }
   ];
 
   return (
     <SlideShell
-      badge="Caso de uso"
-      title="Transformación continua: programa real (12 meses)"
-      subtitle="Necesidades → definición → backlog → entregas en producción → evolución (misma estructura, mismo idioma para CIO y negocio)."
-      rightNote="Resumen/Detalle ajusta densidad"
+      badge="Caso de éxito real"
+      title="Transformación continua (12 meses)"
+      subtitle="Necesidades → definición → backlog → entregas → adopción → evolución"
       detail={true}
-      setDetail={setDetail}
     >
-      <div className="grid2">
-        <div className="col">
-          <Section
-            eyebrow="PROPÓSITO"
-            title="Un flujo constante de valor (no un proyecto aislado)"
-            right={
-              <div className="metricsRow">
-                <Metric label="Mes 0–6" value="22" hint="necesidades detectadas" tone="teal" />
-                <Metric label="En producción" value="5" hint="soluciones entregadas" tone="blue" />
-                <Metric label="Mes 7–12" value="25" hint="nuevos casos de uso" tone="teal" />
-                <Metric label="En producción" value="10" hint="soluciones entregadas" tone="blue" />
-              </div>
-            }
-          >
-            <div className="callout">
-              <div className="calloutTitle">
-                6 meses: 22 necesidades → 5 soluciones. Siguientes 6 meses: +capacidad → 10 soluciones y 25 nuevos casos.
-              </div>
-              <div className="calloutText">
-                El motor del resultado: <strong>stakeholders</strong> + <strong>backlog con CIO</strong> +{" "}
-                <strong>plataforma gobernada</strong>. Sin esto, todo se vuelve one-shot.
-              </div>
-              <div className="calloutChips">
-                <Chip tone="strong">Ritual CIO (visión)</Chip>
-                <Chip tone="strong">Ritual PO (por solución)</Chip>
-                <Chip tone="strong">Stoppers visibles</Chip>
-              </div>
-            </div>
+      <div className="opOffer">
 
-            <Section eyebrow="CICLO OPERATIVO" title="El mismo sistema operativo, aplicado al caso">
-              <ProcessLane steps={process} detail={true} />
-            </Section>
-          </Section>
+        {/* PROPÓSITO */}
+        <div className="missionBar">
+          <span className="missionLabel">PROPÓSITO</span>
+          <span className="missionText">
+            Convertir un proceso manual en un sistema vivo y gobernado: 6 meses → 22 necesidades, 5 soluciones en producción. 
+            Siguientes 6 meses → 25 nuevas necesidades, 10 soluciones adicionales.
+          </span>
         </div>
 
-        <div className="col">
-          <Section eyebrow="PLATAFORMA (PATRONES)" title="3 tipos de solución dentro del programa">
-            <div className="solutionGrid">
-              <SolutionCard
-                title="1) Aisladas"
-                tag="rápidas y específicas"
-                text="Módulos independientes, sin dependencias. Time-to-value máximo."
-                bullets={[
-                  "App o agente puntual",
-                  "Bajo acoplamiento",
-                  "Entrega rápida",
-                ]}
-              />
-              <SolutionCard
-                title="2) Módulos conectados"
-                tag="input ERP → output ERP"
-                text="Toman datos del ERP/CRM, orquestan acciones/validaciones y devuelven datos enriquecidos."
-                bullets={[
-                  "Integración bidireccional",
-                  "Validaciones y aprobaciones",
-                  "Trazabilidad end-to-end",
-                ]}
-              />
-              <SolutionCard
-                title="3) Núcleos nuevos"
-                tag="la plataforma como base"
-                text="Sin sistema previo: creamos el modelo completo (datos maestros + operación) y alimentamos módulos del ERP o nueva línea de negocio."
-                bullets={[
-                  "Dataverse como core",
-                  "Roles/permisos + ALM",
-                  "Escalable a múltiples módulos",
-                ]}
-              />
-            </div>
-          </Section>
+        {/* SECUENCIA / METODOLOGÍA */}
+        <div className="block">
+          <div className="blockTitle">Secuencia operativa del programa</div>
+          <div className="blockSub">
+            El motor que permite entregar valor de forma continua, sin depender de proyectos aislados.
+          </div>
 
-          <Section eyebrow="PERSONAS + GOBIERNO" title="Backlog, seguimiento y decisiones (lo que hace que escale)">
-            <div className="twoCards">
-              <div className="tightCard">
-                <div className="tightCardTitle">Backlog con CIO</div>
-                <div className="tightCardText">
-                  Un backlog único priorizado por valor, urgencia, dependencias y capacidad. Cambios de prioridad sin fricción.
-                </div>
-                <PillList items={detail ? ["Valor", "Urgencia", "Dependencias", "Riesgo", "Capacidad"] : ["Valor", "Capacidad"]} />
+          <SeqDiagram steps={steps} detail={true} />
+        </div>
+
+        {/* PATRONES DE SOLUCIÓN */}
+        <div className="block">
+          <div className="blockTitle">Patrones de solución dentro del programa</div>
+          <div className="blockSub">
+            Dependiendo del caso, utilizamos tres patrones que determinan coste, complejidad y escalabilidad.
+          </div>
+
+          <div className="solutionGrid">
+            <SolutionCard
+              title="1) Aisladas"
+              tag="rápidas y específicas"
+              text="Módulos independientes sin dependencias. Time-to-value máximo."
+              bullets={[
+                "App o agente puntual",
+                "Bajo acoplamiento",
+                "Despliegue rápido"
+              ]}
+            />
+            <SolutionCard
+              title="2) Módulos conectados"
+              tag="input ERP → output ERP"
+              text="Toman datos del ERP/CRM, orquestan validaciones y devuelven información enriquecida."
+              bullets={[
+                "Integración bidireccional",
+                "Validaciones complejas",
+                "Trazabilidad end-to-end"
+              ]}
+            />
+            <SolutionCard
+              title="3) Núcleos nuevos"
+              tag="la plataforma como base"
+              text="Sin sistema previo: definimos datos maestros + operación completa, ampliable a nuevos módulos."
+              bullets={[
+                "Dataverse como core",
+                "Roles y RLS",
+                "Escalable a múltiples dominios"
+              ]}
+            />
+          </div>
+        </div>
+
+        {/* PERSONAS + GOBIERNO */}
+        <div className="block">
+          <div className="blockTitle">Personas + Gobierno</div>
+          <div className="blockSub">
+            El sistema operativo que permite escalar sin perder control.
+          </div>
+
+          <div className="twoCards">
+            <div className="tightCard">
+              <div className="tightCardTitle">Backlog con CIO</div>
+              <div className="tightCardText">
+                Priorización por valor, urgencia, dependencias y capacidad. Cambios sin fricción.
               </div>
-              <div className="tightCard">
-                <div className="tightCardTitle">Seguimiento transparente</div>
-                <div className="tightCardText">
-                  Estado real: avance, bloqueos, próximos hitos. Comunicación adaptada al decisor (síntesis o detalle).
-                </div>
-                <PillList items={detail ? ["Demos", "Stoppers", "Hitos", "Decisiones"] : ["Demos", "Stoppers"]} />
-              </div>
+              <PillList items={["Valor", "Urgencia", "Dependencias", "Capacidad"]} />
             </div>
 
-            <div className="miniNote">
-              <strong>Resultado:</strong> al mantener <strong>modelo reusable</strong> + <strong>gobierno</strong> +{" "}
-              <strong>backlog vivo</strong>, cada solución nueva cuesta menos y llega antes a producción.
+            <div className="tightCard">
+              <div className="tightCardTitle">Seguimiento transparente</div>
+              <div className="tightCardText">
+                Estado real del programa: avance, bloqueos, próximos hitos y decisiones.
+              </div>
+              <PillList items={["Demos", "Stoppers", "Hitos", "Decisiones"]} />
             </div>
-          </Section>
+          </div>
+
+          <div className="miniNote">
+            <strong>Resultado:</strong> cada solución nueva cuesta menos, llega antes y se integra sin fricción.
+          </div>
         </div>
       </div>
     </SlideShell>
   );
 }
 
+
+/* ----------- Tarjeta patrón (reutilizada) ----------- */
 function SolutionCard({ title, tag, text, bullets }) {
   return (
     <div className="solutionCard">
@@ -1219,13 +1221,12 @@ function SolutionCard({ title, tag, text, bullets }) {
       </div>
       <div className="solutionText">{text}</div>
       <div className="solutionBullets">
-        {bullets.map((b) => (
-          <div key={b}>• {b}</div>
-        ))}
+        {bullets.map(b => <div key={b}>• {b}</div>)}
       </div>
     </div>
   );
 }
+
 
 /* --------------------------- ICONS (SVG) --------------------------- */
 
