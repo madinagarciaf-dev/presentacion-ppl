@@ -487,66 +487,92 @@ function SeqDiagram({ steps, detail }) {
 function RolesLegend({ detail }) {
   const roles = [
     {
-      tone: "teal",
       name: "Tech Lead",
-      tags: ["Consultor", "Arquitecto", "PM"],
-      def:
-        "Interlocutor principal. Convierte necesidad de negocio en arquitectura (datos, permisos, UX) y backlog gobernado.",
-      bullets: [
-        "Discovery con stakeholders y proceso real",
-        "Diseño funcional + modelo de datos + RLS",
-        "Priorización con CIO, decisiones y control de alcance",
+      badge: "Arquitecto / Consultor / PM",
+      headline: "Liderazgo técnico y funcional del proyecto",
+      do: [
+        "Diseña el modelo de datos, permisos y arquitectura.",
+        "Define patrones de desarrollo y mejores prácticas.",
+        "Lidera la relación funcional con negocio.",
+        "Asegura coherencia técnica en todo el ciclo."
       ],
+      know: [
+        "Power Platform avanzado (Dataverse, FX, PA, PCF).",
+        "Integraciones con Azure (Functions, Automation).",
+        "Diseño funcional y técnico de procesos.",
+        "Gobierno, ALM, seguridad, entornos y despliegues."
+      ]
     },
     {
-      tone: "blue",
       name: "Developer",
-      tags: ["Power Platform", "IA", "Data"],
-      def:
-        "Constructor del sistema. Implementa apps, automatización e integraciones; y aplica IA para agentes, copilots y RAG.",
-      bullets: [
-        "Power Apps / Automate / Dataverse (lógica y rendimiento)",
-        "Azure Functions / Automation / APIM (pro-code e integración)",
-        "IA: Azure OpenAI/Foundry, agentes, RAG y Copilot Studio",
+      badge: "Developer Power Platform · IA · Data",
+      headline: "Construcción de aplicaciones, automatizaciones y agentes",
+      do: [
+        "Desarrollo de Apps, flujos y lógica compleja.",
+        "Implementación de agentes IA y copilots.",
+        "Integración con APIs, Azure y sistemas externos.",
+        "Diseño de vistas, validaciones y experiencia de usuario."
       ],
+      know: [
+        "Power Apps, Power Automate, PCF, Dataverse.",
+        "Azure Functions, Azure Automation, AI Foundry.",
+        "Prompt engineering, LangChain y orquestadores IA.",
+        "Modelado de datos y optimización de performance."
+      ]
     },
     {
-      tone: "purple",
-      name: "QA",
-      tags: ["Tester"],
-      def:
-        "Garantiza robustez. Asegura que funciona siempre (no solo una vez) con pruebas por rol y regresión.",
-      bullets: [
-        "Casos de prueba por proceso y por rol",
-        "Regresión sprint a sprint",
-        "Validación previa a despliegue (UAT) y estabilización",
+      name: "QA / Tester",
+      badge: "Testing funcional y técnico",
+      headline: "Garantiza calidad, fiabilidad y seguridad",
+      do: [
+        "Diseño y ejecución de pruebas.",
+        "Validación de lógica, seguridad y roles.",
+        "Detección de bugs, regresiones e incoherencias.",
+        "Asegura criterios de aceptación y UAT."
       ],
+      know: [
+        "Procesos funcionales del cliente.",
+        "Casos de uso, escenarios, datos y roles.",
+        "Buenas prácticas de testing en Power Platform.",
+        "Pruebas automatizadas cuando aplica."
+      ]
     },
     {
-      tone: "teal",
       name: "Adopción",
-      tags: ["Consultor", "Formador"],
-      tags: ["Power Platform", "IA", "Data"],
-      def:
-        "Convierte entrega en uso real. Gestión del cambio, formación por rol y acompañamiento en el arranque.",
-      bullets: [
-        "Formación por rol y materiales (guías, vídeos, FAQ)",
-        "Acompañamiento inicial y resolución de fricciones",
-        "Feedback operativo para evolución del backlog",
+      badge: "Consultor · Formador",
+      headline: "Que la solución se use, escale y quede implantada",
+      do: [
+        "Formación por roles con materiales personalizados.",
+        "Plan de adopción y comunicaciones clave.",
+        "Acompañamiento durante las primeras semanas.",
+        "Recogida de feedback y mejora temprana."
       ],
+      know: [
+        "Gestión del cambio.",
+        "Diseño instruccional.",
+        "Comunicación efectiva.",
+        "Introducción progresiva de nuevas funcionalidades."
+      ]
     },
     {
-      tone: "blue",
       name: "Soporte",
-      def:
-        "Motor de continuidad. Telemetría, incidencias y mejora continua para sostener el valor en el tiempo.",
-      bullets: [
-        "Monitorización, KPIs y telemetría de uso",
-        "Corrección rápida + mantenimiento evolutivo",
-        "Roadmap continuo coordinado con Tech Lead",
+      badge: "Developer Power Platform · IA · Data",
+      headline: "Mantenimiento evolutivo y resolución rápida",
+      do: [
+        "Corrección de incidencias en producción.",
+        "Mejoras continuas basadas en uso real.",
+        "Evolutivos funcionales y técnicos.",
+        "Monitorización y prevención de errores."
       ],
-    },
+      know: [
+        "Power Platform a nivel avanzado.",
+        "Monitorización y logging.",
+        "Integraciones con M365 y Azure.",
+        "Despliegues y ALM en cliente."
+      ]
+    }
   ];
+
 
   return (
     <div className="rolesLegendRow">
