@@ -588,30 +588,39 @@ function RolesLegend({ detail }) {
   );
 }
 
-function RoleLegendCard({ tone, name, tags = [], def, bullets, detail }) {
+function RoleLegendCard({ tone, name, badge, headline, do: doList = [], know: knowList = [], detail }) {
+  // Convertimos badge en tags individuales automáticamente
+  const tags = badge ? badge.split("/").map(t => t.trim()) : [];
+
   return (
     <div className={"roleLegendCard tone-" + tone}>
       <div className="roleLegendName">{name}</div>
 
-      {/* TAGS INDIVIDUALES */}
+      {/* TAGS INDIVIDUALES BAJO EL NOMBRE */}
       <div className="roleLegendTags">
         {tags.map((t) => (
           <span key={t} className="roleLegendTag">{t}</span>
         ))}
       </div>
 
-      <div className="roleLegendDef">{def}</div>
+      {/* HEADLINE */}
+      <div className="roleLegendDef">{headline}</div>
 
+      {/* DETALLE: DO + KNOW */}
       {detail && (
         <ul className="roleLegendList">
-          {bullets.map((b) => (
-            <li key={b}>{b}</li>
+          {doList.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+          {knowList.map((item) => (
+            <li key={item}>{item}</li>
           ))}
         </ul>
       )}
     </div>
   );
 }
+
 
 
 
