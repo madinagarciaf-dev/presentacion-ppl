@@ -683,31 +683,139 @@ function TechLegend({ detail }) {
     {
       tone: "blue",
       title: "Azure",
-      subtitle: "Pro-code, integración e IA",
-      desc: "Extensiones, orquestación y capacidades avanzadas.",
-      tags: ["Azure Functions", "Azure Automation", "Azure AI Foundry", "Azure OpenAI", "API Management"],
+      subtitle: "Pro-code, integración e IA avanzada",
+      desc: "Extensiones, orquestación y capacidades avanzadas para procesos críticos.",
+      sections: [
+        {
+          tag: "Azure Functions",
+          title: "Lógica backend bajo demanda",
+          desc: "Código serverless para extender la plataforma con flexibilidad total.",
+          uses: [
+            "Integraciones complejas con ERP/CRM.",
+            "Cálculos intensivos o confidenciales.",
+            "APIs internas y microservicios de negocio.",
+            "Validaciones masivas o batch en tiempo real."
+          ]
+        },
+        {
+          tag: "Azure Automation",
+          title: "Procesos programados y operaciones",
+          desc: "Jobs, scripts y tareas repetitivas sin intervención humana.",
+          uses: [
+            "Procesos nocturnos.",
+            "Sincronización con sistemas legacy.",
+            "Mantenimiento técnico automático.",
+            "Orquestación avanzada con Runbooks."
+          ]
+        },
+        {
+          tag: "Azure AI Foundry / OpenAI",
+          title: "IA generativa y cognitiva",
+          desc: "Modelos generativos, embeddings y clasificación avanzada.",
+          uses: [
+            "RAG corporativo.",
+            "Interpretación de emails y documentos.",
+            "Resumenes y análisis automatizados.",
+            "Chatbots especializados de negocio."
+          ]
+        },
+        {
+          tag: "API Management",
+          title: "Gobierno y seguridad de APIs",
+          desc: "Gestión centralizada de APIs internas y externas.",
+          uses: [
+            "Pasarela segura para integraciones.",
+            "Versionado y políticas de seguridad.",
+            "Control de acceso corporativo.",
+            "Monitorización y telemetría de uso."
+          ]
+        }
+      ]
     },
+
     {
       tone: "purple",
       title: "Microsoft 365",
       subtitle: "Integración operativa",
       desc: "Canales, documentos y colaboración dentro de la solución.",
-      tags: ["Teams", "SharePoint", "Outlook", "OneDrive", "Loop"],
+      sections: [
+        {
+          tag: "Teams",
+          title: "Comunicación integrada",
+          desc: "Notificaciones, bots y acciones dentro del proceso.",
+          uses: [
+            "Aprobaciones desde Teams.",
+            "Bots conectados a Dataverse.",
+            "Mensajes automáticos y alertas.",
+            "Integración con flujos y agentes IA."
+          ]
+        },
+        {
+          tag: "SharePoint / OneDrive",
+          title: "Documentos y contenido",
+          desc: "Gestión documental integrada con los procesos.",
+          uses: [
+            "Repositorios de documentos ligados a apps.",
+            "Clasificación automática.",
+            "Carpetas y metadatos dinámicos.",
+            "Firma, autosave y versionado."
+          ]
+        },
+        {
+          tag: "Outlook",
+          title: "Interacción por correo",
+          desc: "Lógica conectada a correos reales del negocio.",
+          uses: [
+            "Clasificación automática por IA.",
+            "Extracción de datos de adjuntos.",
+            "Activación de procesos desde emails.",
+            "Seguimiento de actividad."
+          ]
+        }
+      ]
     },
-    {
-      tone: "teal",
-      title: "Integraciones externas",
-      subtitle: "Sistemas fuera de Microsoft",
-      desc: "Conectamos ERP/CRM/legacy vía conectores y APIs.",
-      tags: ["SAP", "Salesforce", "Oracle", "APIs REST", "SFTP/Files"],
-    },
+
     {
       tone: "blue",
       title: "Fabric",
       subtitle: "Datos, analítica y observabilidad",
       desc: "KPIs, lakehouse, pipelines y monitorización.",
-      tags: ["Lakehouse", "Pipelines", "Modelado", "KPIs", "Real-Time"],
-    },
+      sections: [
+        {
+          tag: "Lakehouse",
+          title: "Centralización de datos",
+          desc: "Datos estructurados y no estructurados.",
+          uses: [
+            "Modelos analíticos.",
+            "Históricos y trazabilidad.",
+            "Preparación avanzada de datos.",
+            "Consolidación de fuentes múltiples."
+          ]
+        },
+        {
+          tag: "Pipelines",
+          title: "Procesos de datos automatizados",
+          desc: "ETLs gobernadas con calidad y control.",
+          uses: [
+            "Carga de datos del ERP.",
+            "Normalización y limpieza.",
+            "Enriquecimiento con IA.",
+            "Publicación en datasets."
+          ]
+        },
+        {
+          tag: "KPIs",
+          title: "Analítica operativa",
+          desc: "Métricas de negocio conectadas a la operación.",
+          uses: [
+            "Dashboard ejecutivos.",
+            "KPIs por rol.",
+            "Alertas basadas en anomalías.",
+            "Seguimiento real del proceso."
+          ]
+        }
+      ]
+    }
   ];
 
   return (
