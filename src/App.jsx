@@ -357,7 +357,7 @@ function SlideOferta({ detail, setDetail }) {
 
         {/* 4) TECNOLOGÍA (STACK) */}
         <div className="block">
-          <div className="blockTitle">Tecnología (stack)</div>
+          <div className="blockTitle">Tecnología</div>
           <div className="blockSub">
             Power Platform para velocidad · Azure para potencia e IA · M365 para integración operativa · Fabric para datos y observabilidad.
           </div>
