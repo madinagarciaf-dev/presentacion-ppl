@@ -737,7 +737,7 @@ function TechLegendCard({ tone, title, subtitle, desc, tags = [], sections = [],
         ))}
       </div>
 
-      {/* 🔥 SECCIONES DETALLADAS (solo si existen y si estamos en modo detalle) */}
+      {/* 🔥 SECCIONES DETALLADAS RENDERIZADAS CORRECTAMENTE */}
       {detail && sections && (
         <div className="techSections">
           {sections.map((s) => (
@@ -758,6 +758,7 @@ function TechLegendCard({ tone, title, subtitle, desc, tags = [], sections = [],
     </div>
   );
 }
+
 
 
 
