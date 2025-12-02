@@ -39,7 +39,7 @@ export default function App() {
       <main className="stage">
         <div className="deck">
           <div className="card">
-            <Slide detail={detail} setDetail={setDetail} />
+            <Slide detail={true} setDetail={setDetail} />
           </div>
 
           <button className="navArrow left" onClick={prev} aria-label="Anterior">
@@ -321,7 +321,7 @@ function SlideOferta({ detail, setDetail }) {
       title="Metodología de Transformación Digital"
       subtitle="Método + Roles + Tecnología unidos en una secuencia de ejecución (orientado a valor y escalabilidad)."
       rightNote={detail ? "Modo Detalle: Activado" : "Resumen Ejecutivo"}
-      detail={detail}
+      detail={true}
       setDetail={setDetail}
     >
       <div className="opOffer">
@@ -341,7 +341,7 @@ function SlideOferta({ detail, setDetail }) {
             La secuencia que convierte necesidades en entregas reales en producción (sin dependencias de “proyectos one-shot”).
           </div>
 
-          <SeqDiagram steps={steps} detail={detail} />
+          <SeqDiagram steps={steps} detail={true} />
         </div>
 
         {/* 3) ROLES */}
@@ -351,7 +351,7 @@ function SlideOferta({ detail, setDetail }) {
             Los 5 roles clave de h&k que permiten entregar soluciones de extremo a extremo.
           </div>
 
-          <RolesLegend detail={detail} />
+          <RolesLegend detail={true} />
         </div>
 
 
@@ -362,7 +362,7 @@ function SlideOferta({ detail, setDetail }) {
             Power Platform para velocidad · Azure para potencia e IA · M365 para integración operativa · Fabric para datos y observabilidad.
           </div>
 
-          <TechLegend detail={detail} />
+          <TechLegend detail={true} />
         </div>
       </div>
     </SlideShell>
@@ -582,7 +582,7 @@ function RolesLegend({ detail }) {
   return (
     <div className="rolesLegendRow">
       {roles.map((r) => (
-        <RoleLegendCard key={r.name} {...r} detail={detail} />
+        <RoleLegendCard key={r.name} {...r} detail={true} />
       ))}
     </div>
   );
@@ -713,7 +713,7 @@ function TechLegend({ detail }) {
   return (
     <div className="techLegendGrid">
       {cards.map((c) => (
-        <TechLegendCard key={c.title} {...c} detail={detail} />
+        <TechLegendCard key={c.title} {...c} detail={true} />
       ))}
     </div>
   );
@@ -759,10 +759,6 @@ function TechLegendCard({ tone, title, subtitle, desc, tags = [], sections = [],
   );
 }
 
-
-
-
-
 function PillarBox({ title, subtitle, text }) {
   return (
     <div className="pillarDef">
@@ -804,7 +800,7 @@ function RolesSection({ detail }) {
             "Priorización con CIO",
             "Supervisión de calidad y evolución"
           ]}
-          detail={detail}
+          detail={true}
         />
 
         {/* --- DEVELOPER (Power Platform + Azure) + IA DEVELOPER --- */}
@@ -831,7 +827,7 @@ function RolesSection({ detail }) {
             "Soporte a QA y corrección técnica",
             "Evolución del modelo técnico y del proceso"
           ]}
-          detail={detail}
+          detail={true}
         />
 
         {/* --- QA / TESTER --- */}
@@ -853,7 +849,7 @@ function RolesSection({ detail }) {
             "Detección de incoherencias",
             "Soporte en la estabilización post-producción"
           ]}
-          detail={detail}
+          detail={true}
         />
 
         {/* --- ADOPCIÓN --- */}
@@ -875,7 +871,7 @@ function RolesSection({ detail }) {
             "Gestionar feedback real y mejoras",
             "Conectar casos de uso con negocio"
           ]}
-          detail={detail}
+          detail={true}
         />
 
         {/* --- SOPORTE / EVOLUCIÓN --- */}
@@ -897,7 +893,7 @@ function RolesSection({ detail }) {
             "Propuestas basadas en datos",
             "Alineamiento con Tech Lead para roadmap continuo"
           ]}
-          detail={detail}
+          detail={true}
         />
 
       </div>
@@ -999,7 +995,7 @@ function SlideCasoTransformacion({ detail, setDetail }) {
       title="Transformación continua: programa real (12 meses)"
       subtitle="Necesidades → definición → backlog → entregas en producción → evolución (misma estructura, mismo idioma para CIO y negocio)."
       rightNote="Resumen/Detalle ajusta densidad"
-      detail={detail}
+      detail={true}
       setDetail={setDetail}
     >
       <div className="grid2">
@@ -1032,7 +1028,7 @@ function SlideCasoTransformacion({ detail, setDetail }) {
             </div>
 
             <Section eyebrow="CICLO OPERATIVO" title="El mismo sistema operativo, aplicado al caso">
-              <ProcessLane steps={process} detail={detail} />
+              <ProcessLane steps={process} detail={true} />
             </Section>
           </Section>
         </div>
