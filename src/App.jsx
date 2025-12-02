@@ -318,7 +318,7 @@ function SlideOferta({ detail, setDetail }) {
   return (
     <SlideShell
       badge="Technical Approach"
-      title="Metodología de Transformación Digital"
+      title="h&k Transformación Digital"
       subtitle="Método + Roles + Tecnología unidos en una secuencia de ejecución (orientado a valor y escalabilidad)."
       rightNote={detail ? "Modo Detalle: Activado" : "Resumen Ejecutivo"}
       detail={true}
