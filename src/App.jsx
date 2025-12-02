@@ -729,14 +729,6 @@ function TechLegendCard({ tone, title, subtitle, desc, tags = [], sections = [],
       <div className="techLegendSub">{subtitle}</div>
       {desc ? <div className="techLegendDesc">{desc}</div> : null}
 
-      <div className="techLegendTags">
-        {shown.map((t) => (
-          <span key={t} className="techLegendTag">
-            {t}
-          </span>
-        ))}
-      </div>
-
       {/* 🔥 SECCIONES DETALLADAS RENDERIZADAS CORRECTAMENTE */}
       {detail && sections && (
         <div className="techSections">

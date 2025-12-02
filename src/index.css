@@ -2123,12 +2123,14 @@ body{
 }
 
 .techSectionTag {
-  font-weight: 700;
-  font-size: 12px;
-  padding: 2px 8px;
   display: inline-block;
-  border-radius: 4px;
-  background: var(--pill-soft);
+  background: #e8f7ff;
+  color: #0078d4;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
 .techSectionTitle {
