@@ -677,6 +677,18 @@ function TechLegend({ detail }) {
             "Agentes conectados a Dataverse, SAP o SharePoint.",
             "RAG con embeddings y Azure OpenAI."
           ]
+        },
+        {
+          tag: "Conectores",
+          title: "Integración nativa y extensible",
+          desc: "Más de 1000 conectores oficiales y posibilidad de crear conectores personalizados para cualquier API.",
+          uses: [
+            "Integración bidireccional con SAP, Oracle, Salesforce, SQL Server, APIs REST…",
+            "Acceso directo a servicios Microsoft: Teams, Outlook, SharePoint, OneDrive, Planner, Excel.",
+            "Conectores premium para sistemas empresariales (ServiceNow, Dynamics 365, Adobe, IBM, etc.).",
+            "Creación de conectores personalizados con autenticación segura (OAuth2, API Keys).",
+            "Normalización de integraciones dentro del ALM del cliente."
+          ]
         }
       ]
     },
