@@ -344,15 +344,16 @@ function SlideOferta({ detail, setDetail }) {
           <SeqDiagram steps={steps} detail={detail} />
         </div>
 
-        {/* 3) ROLES (LEYENDA) */}
+        {/* 3) ROLES */}
         <div className="block">
-          <div className="blockTitle">Roles (leyenda)</div>
+          <div className="blockTitle">Roles</div>
           <div className="blockSub">
-            Nombres consistentes con el diagrama. Un equipo coordinado donde método, roles y tecnología encajan.
+            Los 5 roles clave de h&k que permiten entregar soluciones de extremo a extremo.
           </div>
 
           <RolesLegend detail={detail} />
         </div>
+
 
         {/* 4) TECNOLOGÍA (STACK) */}
         <div className="block">
@@ -488,6 +489,7 @@ function RolesLegend({ detail }) {
     {
       tone: "teal",
       name: "Tech Lead",
+      tags: ["Consultor", "Arquitecto", "PM"],
       def:
         "Interlocutor principal. Convierte necesidad de negocio en arquitectura (datos, permisos, UX) y backlog gobernado.",
       bullets: [
@@ -499,6 +501,7 @@ function RolesLegend({ detail }) {
     {
       tone: "blue",
       name: "Developer",
+      tags: ["Power Platform", "IA", "Data"],
       def:
         "Constructor del sistema. Implementa apps, automatización e integraciones; y aplica IA para agentes, copilots y RAG.",
       bullets: [
@@ -510,6 +513,7 @@ function RolesLegend({ detail }) {
     {
       tone: "purple",
       name: "QA",
+      tags: ["Tester"],
       def:
         "Garantiza robustez. Asegura que funciona siempre (no solo una vez) con pruebas por rol y regresión.",
       bullets: [
@@ -521,6 +525,8 @@ function RolesLegend({ detail }) {
     {
       tone: "teal",
       name: "Adopción",
+      tags: ["Consultor", "Formador"],
+      tags: ["Power Platform", "IA", "Data"],
       def:
         "Convierte entrega en uso real. Gestión del cambio, formación por rol y acompañamiento en el arranque.",
       bullets: [
@@ -551,11 +557,20 @@ function RolesLegend({ detail }) {
   );
 }
 
-function RoleLegendCard({ tone, name, def, bullets, detail }) {
+function RoleLegendCard({ tone, name, tags, def, bullets, detail }) {
   return (
     <div className={"roleLegendCard tone-" + tone}>
       <div className="roleLegendName">{name}</div>
+
+      {/* Chips de alias */}
+      <div className="roleLegendTags">
+        {tags.map((t) => (
+          <span key={t} className="roleTagChip">{t}</span>
+        ))}
+      </div>
+
       <div className="roleLegendDef">{def}</div>
+
       {detail ? (
         <ul className="roleLegendList">
           {bullets.map((b) => (
@@ -566,6 +581,8 @@ function RoleLegendCard({ tone, name, def, bullets, detail }) {
     </div>
   );
 }
+
+
 
 
 function TechLegend({ detail }) {

@@ -2097,6 +2097,20 @@ body{
   border: 1px solid #bae6fd;
   font-weight: 700;
 }
+.roleLegendTags {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0 8px 0;
+}
+
+.roleTagChip {
+  background: rgba(0,0,0,0.07);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #333;
+}
 
 
 
