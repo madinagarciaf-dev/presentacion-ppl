@@ -628,8 +628,57 @@ function TechLegend({ detail }) {
       tone: "teal",
       title: "Power Platform",
       subtitle: "Velocidad para procesos y UX",
-      desc: "Apps, automatización y datos con gobierno y ALM.",
-      tags: ["Power Apps", "Power Pages", "Power Automate", "Dataverse", "AI Hub", "Copilot Studio"],
+      desc: "Apps, automatización, datos y agentes con gobierno y ALM.",
+      tags: ["Power Apps", "Power Automate", "Dataverse", "AI Hub", "Copilot Studio"],
+      sections: [
+        {
+          tag: "Power Apps",
+          title: "La interfaz humana del proceso",
+          desc: "Construye apps que guían al usuario a través del proceso con validaciones, roles y lógica embebida.",
+          uses: [
+            "Apps internas (compras, calidad, logística).",
+            "CRM/ERP ligeros y módulos adicionales.",
+            "Formularios inteligentes con reglas y workflows.",
+            "Apps de operación industrial conectadas a sensores.",
+            "Portales internos y externos con autenticación."
+          ]
+        },
+        {
+          tag: "Power Automate",
+          title: "Los agentes invisibles",
+          desc: "Orquestación automática: lógica, decisiones, integraciones y procesos end-to-end.",
+          uses: [
+            "Aprobaciones con reglas complejas.",
+            "Integraciones con SAP, Salesforce, SQL y APIs.",
+            "Generación automática de documentos (PDF, Excel).",
+            "Procesos industriales automáticos.",
+            "Inteligencia documental con Azure OpenAI."
+          ]
+        },
+        {
+          tag: "Dataverse",
+          title: "El core de datos gobernado",
+          desc: "Base de datos segura con relaciones, modelos, permisos por registro y auditoría.",
+          uses: [
+            "Modelos operacionales de negocio.",
+            "Control avanzado por rol y por fila.",
+            "Integración nativa con M365 y Azure.",
+            "Datos maestros y operacionales centralizados."
+          ]
+        },
+        {
+          tag: "Copilot Studio + AI Hub",
+          title: "Agentes y copilots inteligentes",
+          desc: "Construcción de copilots, RAG y agentes conectados a los datos internos.",
+          uses: [
+            "Consultas internas tipo ‘muéstrame pedidos pendientes’.",
+            "Clasificación automática de correos/documentos.",
+            "Extracción de datos de PDFs y albaranes.",
+            "Agentes conectados a Dataverse, SAP o SharePoint.",
+            "RAG con embeddings y Azure OpenAI."
+          ]
+        }
+      ]
     },
     {
       tone: "blue",
@@ -671,13 +720,15 @@ function TechLegend({ detail }) {
 }
 
 
-function TechLegendCard({ tone, title, subtitle, desc, tags = [], detail }) {
+function TechLegendCard({ tone, title, subtitle, desc, tags = [], sections = [], detail }) {
   const shown = detail ? tags : tags.slice(0, 4);
+
   return (
     <div className={"techLegendCard tone-" + tone}>
       <div className="techLegendTitle">{title}</div>
       <div className="techLegendSub">{subtitle}</div>
       {desc ? <div className="techLegendDesc">{desc}</div> : null}
+
       <div className="techLegendTags">
         {shown.map((t) => (
           <span key={t} className="techLegendTag">
@@ -685,9 +736,30 @@ function TechLegendCard({ tone, title, subtitle, desc, tags = [], detail }) {
           </span>
         ))}
       </div>
+
+      {/* 🔥 SECCIONES DETALLADAS (solo si existen y si estamos en modo detalle) */}
+      {detail && sections && (
+        <div className="techSections">
+          {sections.map((s) => (
+            <div key={s.tag} className="techSection">
+              <div className="techSectionTag">{s.tag}</div>
+              <div className="techSectionTitle">{s.title}</div>
+              <div className="techSectionDesc">{s.desc}</div>
+
+              <ul className="techSectionList">
+                {s.uses.map((u) => (
+                  <li key={u}>{u}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
+
+
 
 
 function PillarBox({ title, subtitle, text }) {
