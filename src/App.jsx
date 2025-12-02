@@ -590,7 +590,7 @@ function RolesLegend({ detail }) {
 
 function RoleLegendCard({ tone, name, badge, headline, do: doList = [], know: knowList = [], detail }) {
   // Convertimos badge en tags individuales automáticamente
-  const tags = badge ? badge.split("/").map(t => t.trim()) : [];
+  const tags = badge ? badge.split(/[·/]/).map((t) => t.trim()).filter(Boolean) : [];
 
   return (
     <div className={"roleLegendCard tone-" + tone}>
@@ -622,74 +622,44 @@ function RoleLegendCard({ tone, name, badge, headline, do: doList = [], know: kn
 }
 
 
-
-
-
-
 function TechLegend({ detail }) {
-  const roles = [
+  const cards = [
     {
       tone: "teal",
-      name: "Tech Lead",
-      tags: ["Consultor", "Arquitecto", "PM"],
-      def:
-        "Interlocutor principal. Convierte necesidad de negocio en arquitectura (datos, permisos, UX) y backlog gobernado.",
-      bullets: [
-        "Discovery con stakeholders y proceso real",
-        "Diseño funcional + modelo de datos + RLS",
-        "Priorización con CIO, decisiones y control de alcance",
-      ],
+      title: "Power Platform",
+      subtitle: "Velocidad para procesos y UX",
+      desc: "Apps, automatización y datos con gobierno y ALM.",
+      tags: ["Power Apps", "Power Pages", "Power Automate", "Dataverse", "AI Hub", "Copilot Studio"],
     },
     {
       tone: "blue",
-      name: "Developer",
-      tags: ["Power Platform", "IA", "Data"],
-      def:
-        "Implementa apps, automatización, integraciones y agentes. IA aplicada (Azure OpenAI, Foundry, RAG, Copilot Studio).",
-      bullets: [
-        "Power Apps / Automate / Dataverse",
-        "Azure Functions / Automation / APIM",
-        "Agentes y RAG (AI Hub, Foundry, LangChain)",
-      ],
+      title: "Azure",
+      subtitle: "Pro-code, integración e IA",
+      desc: "Extensiones, orquestación y capacidades avanzadas.",
+      tags: ["Azure Functions", "Azure Automation", "Azure AI Foundry", "Azure OpenAI", "API Management"],
     },
     {
       tone: "purple",
-      name: "QA",
-      tags: ["Tester"],
-      def:
-        "Garantiza robustez. Pruebas funcionales, regresión y validación pre-despliegue.",
-      bullets: [
-        "Casos de prueba por rol",
-        "Regresión sprint a sprint",
-        "Validación UAT",
-      ],
+      title: "Microsoft 365",
+      subtitle: "Integración operativa",
+      desc: "Canales, documentos y colaboración dentro de la solución.",
+      tags: ["Teams", "SharePoint", "Outlook", "OneDrive", "Loop"],
     },
     {
       tone: "teal",
-      name: "Adopción",
-      tags: ["Consultor", "Formador"],
-      def:
-        "Convierte entrega en uso real. Gestión del cambio, formación por rol y acompañamiento.",
-      bullets: [
-        "Formación por rol",
-        "Acompañamiento inicial",
-        "Feedback operativo",
-      ],
+      title: "Integraciones externas",
+      subtitle: "Sistemas fuera de Microsoft",
+      desc: "Conectamos ERP/CRM/legacy vía conectores y APIs.",
+      tags: ["SAP", "Salesforce", "Oracle", "APIs REST", "SFTP/Files"],
     },
     {
       tone: "blue",
-      name: "Soporte",
-      tags: ["PP Dev", "IA", "Data"],
-      def:
-        "Motor de continuidad. Telemetría, incidencias y mejora continua.",
-      bullets: [
-        "Monitorización de uso",
-        "Corrección rápida",
-        "Mejoras incrementales",
-      ],
+      title: "Fabric",
+      subtitle: "Datos, analítica y observabilidad",
+      desc: "KPIs, lakehouse, pipelines y monitorización.",
+      tags: ["Lakehouse", "Pipelines", "Modelado", "KPIs", "Real-Time"],
     },
   ];
-
 
   return (
     <div className="techLegendGrid">
@@ -700,12 +670,14 @@ function TechLegend({ detail }) {
   );
 }
 
-function TechLegendCard({ tone, title, subtitle, tags, detail }) {
+
+function TechLegendCard({ tone, title, subtitle, desc, tags = [], detail }) {
   const shown = detail ? tags : tags.slice(0, 4);
   return (
     <div className={"techLegendCard tone-" + tone}>
       <div className="techLegendTitle">{title}</div>
       <div className="techLegendSub">{subtitle}</div>
+      {desc ? <div className="techLegendDesc">{desc}</div> : null}
       <div className="techLegendTags">
         {shown.map((t) => (
           <span key={t} className="techLegendTag">
@@ -716,6 +688,7 @@ function TechLegendCard({ tone, title, subtitle, tags, detail }) {
     </div>
   );
 }
+
 
 function PillarBox({ title, subtitle, text }) {
   return (
