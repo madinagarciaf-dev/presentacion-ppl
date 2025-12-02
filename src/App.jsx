@@ -588,7 +588,7 @@ function RolesLegend({ detail }) {
   );
 }
 
-function RoleLegendCard({ name, badge, headline, do: doItems, know, detail }) {
+function RoleLegendCard({ tone, name, badge, headline, do: doItems, know, detail }) {
   return (
     <div className={"roleLegendCard tone-" + tone}>
       <div className="roleLegendName">{name}</div>
