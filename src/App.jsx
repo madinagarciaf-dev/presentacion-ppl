@@ -583,27 +583,25 @@ function RolesLegend({ detail }) {
   );
 }
 
-function RoleLegendCard({ tone, name, tags, def, bullets, detail }) {
+function RoleLegendCard({ name, badge, headline, do: doItems, know, detail }) {
   return (
     <div className={"roleLegendCard tone-" + tone}>
       <div className="roleLegendName">{name}</div>
 
       {/* Chips de alias */}
       <div className="roleLegendTags">
-        {tags.map((t) => (
-          <span key={t} className="roleTagChip">{t}</span>
-        ))}
+        <span className="roleTagChip">{badge}</span>
       </div>
 
-      <div className="roleLegendDef">{def}</div>
+      <div className="roleLegendDef">{headline}</div>
 
       {detail ? (
         <ul className="roleLegendList">
-          {bullets.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
+          {doItems.map((b) => <li key={b}>{b}</li>)}
+          {know.map((k) => <li key={k}>{k}</li>)}
         </ul>
       ) : null}
+
     </div>
   );
 }
