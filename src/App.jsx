@@ -588,25 +588,27 @@ function RolesLegend({ detail }) {
   );
 }
 
-function RoleLegendCard({ tone, name, badge, headline, do: doItems, know, detail }) {
+function RoleLegendCard({ tone, name, tags = [], def, bullets, detail }) {
   return (
     <div className={"roleLegendCard tone-" + tone}>
       <div className="roleLegendName">{name}</div>
 
-      {/* Chips de alias */}
+      {/* TAGS INDIVIDUALES */}
       <div className="roleLegendTags">
-        <span className="roleTagChip">{badge}</span>
+        {tags.map((t) => (
+          <span key={t} className="roleLegendTag">{t}</span>
+        ))}
       </div>
 
-      <div className="roleLegendDef">{headline}</div>
+      <div className="roleLegendDef">{def}</div>
 
-      {detail ? (
+      {detail && (
         <ul className="roleLegendList">
-          {doItems.map((b) => <li key={b}>{b}</li>)}
-          {know.map((k) => <li key={k}>{k}</li>)}
+          {bullets.map((b) => (
+            <li key={b}>{b}</li>
+          ))}
         </ul>
-      ) : null}
-
+      )}
     </div>
   );
 }
@@ -614,39 +616,71 @@ function RoleLegendCard({ tone, name, badge, headline, do: doItems, know, detail
 
 
 
+
 function TechLegend({ detail }) {
-  const cards = [
+  const roles = [
     {
       tone: "teal",
-      title: "Power Platform",
-      subtitle: "Velocidad en procesos y UX",
-      tags: ["Power Apps", "Power Automate", "Dataverse", "Custom Connectors", "Copilot Studio"],
+      name: "Tech Lead",
+      tags: ["Consultor", "Arquitecto", "PM"],
+      def:
+        "Interlocutor principal. Convierte necesidad de negocio en arquitectura (datos, permisos, UX) y backlog gobernado.",
+      bullets: [
+        "Discovery con stakeholders y proceso real",
+        "Diseño funcional + modelo de datos + RLS",
+        "Priorización con CIO, decisiones y control de alcance",
+      ],
     },
     {
       tone: "blue",
-      title: "Azure",
-      subtitle: "Integración y potencia (pro-code)",
-      tags: ["Functions", "API Management", "Automation", "Storage/Data Lake", "Key Vault"],
+      name: "Developer",
+      tags: ["Power Platform", "IA", "Data"],
+      def:
+        "Implementa apps, automatización, integraciones y agentes. IA aplicada (Azure OpenAI, Foundry, RAG, Copilot Studio).",
+      bullets: [
+        "Power Apps / Automate / Dataverse",
+        "Azure Functions / Automation / APIM",
+        "Agentes y RAG (AI Hub, Foundry, LangChain)",
+      ],
     },
     {
       tone: "purple",
-      title: "IA",
-      subtitle: "Agentes, RAG y copilots",
-      tags: ["Azure OpenAI", "AI Hub", "Azure AI Foundry", "RAG", "LangChain/SK"],
-    },
-    {
-      tone: "blue",
-      title: "M365",
-      subtitle: "Integración operativa (expertise)",
-      tags: ["Teams", "SharePoint", "Outlook", "OneDrive", "Loop"],
+      name: "QA",
+      tags: ["Tester"],
+      def:
+        "Garantiza robustez. Pruebas funcionales, regresión y validación pre-despliegue.",
+      bullets: [
+        "Casos de prueba por rol",
+        "Regresión sprint a sprint",
+        "Validación UAT",
+      ],
     },
     {
       tone: "teal",
-      title: "Datos (Fabric)",
-      subtitle: "Observabilidad y analítica",
-      tags: ["Pipelines", "Lakehouse", "Modelado", "KPIs", "Real-Time/Monitorización"],
+      name: "Adopción",
+      tags: ["Consultor", "Formador"],
+      def:
+        "Convierte entrega en uso real. Gestión del cambio, formación por rol y acompañamiento.",
+      bullets: [
+        "Formación por rol",
+        "Acompañamiento inicial",
+        "Feedback operativo",
+      ],
+    },
+    {
+      tone: "blue",
+      name: "Soporte",
+      tags: ["PP Dev", "IA", "Data"],
+      def:
+        "Motor de continuidad. Telemetría, incidencias y mejora continua.",
+      bullets: [
+        "Monitorización de uso",
+        "Corrección rápida",
+        "Mejoras incrementales",
+      ],
     },
   ];
+
 
   return (
     <div className="techLegendGrid">
